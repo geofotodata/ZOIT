@@ -37,22 +37,22 @@ EXECUTOR_COLUMNS = [
 DOCUMENTS = [
     {
         "title": "Ley 20.423",
-        "file": "Ley-20423_12-FEB-2010.pdf",
+        "file": "",
         "type": "Marco legal",
     },
     {
         "title": "Decreto 30 procedimiento ZOIT",
-        "file": "02-decreto-30-que-fija-procedimiento-zoit.pdf",
+        "file": "",
         "type": "Procedimiento",
     },
     {
         "title": "Decreto ZOIT San José de Maipo 2025",
-        "file": "decretos-d-o-zoit-san-jose-de-maipo-2025.pdf",
+        "file": "",
         "type": "Declaratoria",
     },
     {
         "title": "Plan de acción ZOIT SJDM",
-        "file": "plan-de-accion-zoit-sjdm-2025-2-0-octubre3.pdf",
+        "file": "",
         "type": "Plan de acción",
     },
 ]
@@ -459,10 +459,10 @@ def render_html(records):
 
     function renderDocs() {{
       byId('docs').innerHTML = DOCUMENTS.map(doc => `
-        <a class="doc" href="${{doc.file}}" target="_blank">
+        <div class="doc">
           <strong>${{doc.title}}</strong>
           <span>${{doc.type}}</span>
-        </a>
+        </div>
       `).join('');
     }}
 
