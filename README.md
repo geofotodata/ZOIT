@@ -13,6 +13,10 @@ El Excel fuente y los documentos PDF se mantienen fuera del repositorio. Para re
 
 Abrir `dashboard_zoit_pa_v1.html` en un navegador.
 
+Version publicada en GitHub Pages:
+
+https://geofotodata.github.io/ZOIT/
+
 ## Como regenerar el dashboard
 
 Si se actualiza el Excel, ejecutar:
