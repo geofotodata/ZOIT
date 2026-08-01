@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard ZOIT San José de Maipo - PA-V1</title>
+  <style>
+    :root {
+      --bg: #f6f7f2;
+      --ink: #17211b;
+      --muted: #5f6f66;
+      --line: #dbe1d8;
+      --panel: #ffffff;
+      --green: #2f7d5b;
+      --blue: #366b9f;
+      --amber: #c8872d;
+      --red: #b8554b;
+      --teal: #15827a;
+      --gray: #68736c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+    header {
+      padding: 24px 28px 18px;
+      background: #18392f;
+      color: white;
+      border-bottom: 5px solid #d8a64a;
+    }
+    h1 { margin: 0 0 8px; font-size: 28px; letter-spacing: 0; }
+    header p { margin: 0; color: #dce9df; max-width: 980px; line-height: 1.45; }
+    main { padding: 22px 28px 40px; max-width: 1500px; margin: 0 auto; }
+    .filters {
+      display: grid;
+      grid-template-columns: 2fr repeat(4, minmax(160px, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    input, select {
+      width: 100%;
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 8px 10px;
+      background: white;
+      color: var(--ink);
+      font-size: 14px;
+    }
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .kpi {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .kpi .label { color: var(--muted); font-size: 12px; text-transform: uppercase; }
+    .kpi .value { font-size: 26px; font-weight: 700; margin-top: 6px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      align-items: start;
+    }
+    section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+    h2 { font-size: 18px; margin: 0 0 14px; }
+    .bar-row {
+      display: grid;
+      grid-template-columns: minmax(130px, 230px) 1fr 54px;
+      gap: 10px;
+      align-items: center;
+      margin: 9px 0;
+      font-size: 14px;
+    }
+    .bar-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .bar-track { background: #edf1ec; border-radius: 4px; height: 15px; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--green); }
+    .status-pill {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #edf1ec;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .s-realizada-sin-verificador { background: #fff1cf; color: #765000; }
+    .s-en-ejecucion { background: #d9edff; color: #17476f; }
+    .s-requiere-ajuste { background: #ffe0dc; color: #82322b; }
+    .s-requiere-gestion { background: #e1f1ea; color: #1e6548; }
+    .s-gestion-interna { background: #e8e3f8; color: #493a7a; }
+    .s-con-observacion { background: #eeeeee; color: #414141; }
+    .table-wrap { overflow: auto; max-height: 620px; border: 1px solid var(--line); border-radius: 6px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 1050px; }
+    th, td { padding: 9px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { position: sticky; top: 0; background: #eef3ed; z-index: 1; }
+    tr:hover td { background: #fafbf7; }
+    .gantt { overflow: auto; }
+    .gantt-table { min-width: 980px; }
+    .q { width: 24px; text-align: center; padding: 5px 2px; }
+    .cell-active { background: #4b906e; border-radius: 2px; height: 14px; display: block; }
+    .docs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .doc {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      color: var(--ink);
+      text-decoration: none;
+      background: #fbfcfa;
+    }
+    .doc strong { display: block; margin-bottom: 5px; }
+    .doc span { color: var(--muted); font-size: 13px; }
+    .note { color: var(--muted); font-size: 13px; margin-top: 8px; }
+    @media (max-width: 1000px) {
+      .filters, .kpis, .grid, .docs { grid-template-columns: 1fr; }
+      header, main { padding-left: 16px; padding-right: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dashboard Plan de Acción ZOIT San José de Maipo</h1>
+    <p>Monitoreo construido desde la hoja <strong>PA-V1</strong> del archivo SEGUIMIENTO PLAN DE ACCIÓN ZOIT CAJÓN DEL MAIPO.xlsx. Permite revisar acciones, líneas de acción, programación anual, trimestres, ejecutores y observaciones operativas.</p>
+  </header>
+  <main>
+    <div class="filters">
+      <input id="search" type="search" placeholder="Buscar acción, indicador, ejecutor u observación">
+      <select id="lineFilter"><option value="">Todas las líneas</option></select>
+      <select id="statusFilter"><option value="">Todos los estados</option></select>
+      <select id="yearFilter"><option value="">Todos los años</option></select>
+      <select id="executorFilter"><option value="">Todos los ejecutores</option></select>
+    </div>
+
+    <div class="kpis" id="kpis"></div>
+
+    <div class="grid">
+      <section>
+        <h2>Acciones por estado</h2>
+        <div id="statusChart"></div>
+      </section>
+      <section>
+        <h2>Acciones por línea</h2>
+        <div id="lineChart"></div>
+      </section>
+      <section>
+        <h2>Programación por año</h2>
+        <div id="yearChart"></div>
+      </section>
+      <section>
+        <h2>Presupuesto por línea</h2>
+        <div id="budgetChart"></div>
+      </section>
+    </div>
+
+    <section>
+      <h2>Carta Gantt por trimestres</h2>
+      <div class="gantt" id="gantt"></div>
+    </section>
+
+    <section>
+      <h2>Tabla de acciones</h2>
+      <div class="table-wrap" id="table"></div>
+    </section>
+
+    <section>
+      <h2>Normativa y documentos base</h2>
+      <div class="docs" id="docs"></div>
+      <div class="note">Los enlaces abren archivos locales ubicados en la misma carpeta del dashboard.</div>
+    </section>
+  </main>
+
+  <script>
+    const DATA = [{"id": 1, "action": "Construir Refugio Tupungato", "line": "Equipamiento e infra", "objective": "Contar con  infraestructura habilitante para recibir e informar adecuadamente a los habitantes y turistas", "gap": "Escasa infraestructura para fortalecer el turismo de  montaña", "indicator": "% de avance en construcción del refugio", "goal": "100% al año 2", "verifier": "Informe de avance de obra y registro fotográfico", "budget": 283000000.0, "budgetLabel": "283000000", "funding": "Gobierno Regional de Santiago", "years": ["AÑO 2"], "startQ": 5, "endQ": 8, "executors": ["Fund. Deporte Libre"], "allExecutors": "Fundación Deporte Libre", "observation": "Acción ya realizada, falta \"Informe de avance de obra y registro fotográfico\"", "status": "Realizada sin verificador"}, {"id": 2, "action": "Proyecto habilitación Parque Natural Mirador de Cóndores (planta turística)", "line": "Equipamiento e infra", "objective": "Contar con  infraestructura habilitante para recibir e informar adecuadamente a los habitantes y turistas", "gap": "Escasa infraestructura para fortalecer el turismo de  montaña", "indicator": "% de habilitación de infraestructura", "goal": "Alcanzar el 100% de la infraestructura habilitada al Año 1", "verifier": "Acta de recepción de obras y registro fotográfico", "budget": 135000000.0, "budgetLabel": "135000000", "funding": "Gobierno Regional de Santiago", "years": ["AÑO 1"], "startQ": 1, "endQ": 4, "executors": ["Municipalidad (SECPLA)"], "allExecutors": "Municipalidad (SECPLA)", "observation": "Acción ya realizada, falta \"Acta de recepción de obras y registro fotográfico\"", "status": "Realizada sin verificador"}, {"id": 3, "action": "Gestionar, diseñar y/o construir un mirador en la ruta G-25 (SOLANA)", "line": "Equipamiento e infra", "objective": "Contar con  infraestructura habilitante para recibir e informar adecuadamente a los habitantes y turistas", "gap": "Escasa infraestructura para fortalecer el turismo de  montaña", "indicator": "% de avance en el diseño y construcción", "goal": "100% de al menos en alguno de estas etapas diseño y/o construcción entre el Año 1 y 4", "verifier": "Informe de avance anual, acta de recepción de obra y registro fotográfico (1 por año)", "budget": 0.0, "budgetLabel": "s/p", "funding": "Municipalidad", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["MOP"], "allExecutors": "Municipalidad (SECPLA) - MOP", "observation": "AJUSTES A REALIZAR (\"se está analizando la factibilidad con las instituciones correspondientes\") hacer reunion con SECPLA - MOP y realizar informe de \"gestión\"", "status": "Requiere ajuste"}, {"id": 4, "action": "Diseño y búsqueda de lugar para construcción de feria permanente para artesanos en San José de Maipo", "line": "Equipamiento e infra", "objective": "Contar con  infraestructura habilitante para recibir e informar adecuadamente a los habitantes y turistas", "gap": "Escasa infraestructura para fortalecer el turismo de  montaña", "indicator": "Etapas completadas en diseño y selección del lugar", "goal": "Finalizar el diseño y propuesta de lugar para el Año 4", "verifier": "Documentación de diseño y propuestas, informes de avance (1 por año)", "budget": 60000000.0, "budgetLabel": "60000000", "funding": "Gobierno Regional de Santiago", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["Municipalidad (SECPLA)"], "allExecutors": "Municipalidad (SECPLA)", "observation": "AJUSTES A REALIZAR (\"se está analizando la factibilidad con las instituciones correspondientes\") - hacer reunion con SECPLA - MOP y realizar informe de \"gestión\"", "status": "Requiere ajuste"}, {"id": 5, "action": "Realizar gestiones ante la autoridad que corresponda, para estudiar una solución de accesibilidad universal de la pasarela del MNEM", "line": "Equipamiento e infra", "objective": "Contar con  infraestructura habilitante para recibir e informar adecuadamente a los habitantes y turistas", "gap": "Escasa infraestructura para fortalecer el turismo de  montaña", "indicator": "% estado de avance en instalación de la pasarela accesible", "goal": "Completar la instalación y operatividad de la pasarela para el Año 4", "verifier": "Informe de avance, acta de recepción y registro fotográfico (1 por año)", "budget": 0.0, "budgetLabel": "s/p", "funding": "Gobierno Regional de Santiago", "years": ["AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 5, "endQ": 16, "executors": ["MOP", "CONAF RM"], "allExecutors": "MOP – CONAF RM", "observation": "Hacer reunion con MOP - CONAF RM y realizar informe de \"gestión\"", "status": "Requiere gestión"}, {"id": 6, "action": "Habilitar oficina de información turística", "line": "Equipamiento e infra", "objective": "Contar con  infraestructura habilitante para recibir e informar adecuadamente a los habitantes y turistas", "gap": "Actualmente no hay espacios que se entregue información turística que atienda fines de semana y festivos", "indicator": "% estado de avance en la habilitación de la oficina", "goal": "Lograr la habilitación completa de la oficina para el Año 4", "verifier": "Registro fotográfico, acta de apertura o funcionamiento de la oficina (1 por año)", "budget": 162000000.0, "budgetLabel": "162000000", "funding": "Municipalidad - SUBDERE", "years": ["AÑO 3", "AÑO 4"], "startQ": 9, "endQ": 16, "executors": ["Municipalidad (SECPLA- DIDECO)"], "allExecutors": "Municipalidad (SECPLA- DIDECO)", "observation": "En ejecución, revisar avance según ordenanza", "status": "En ejecución"}, {"id": 7, "action": "Gestión para proyecto de diseño de punto de información turística de alta montaña en Baños Morales y Embalse El Yeso", "line": "Equipamiento e infra", "objective": "Contar con  infraestructura habilitante para recibir e informar adecuadamente a los habitantes y turistas", "gap": "Actualmente no hay espacios que se entregue información turística que atienda fines de semana y festivos", "indicator": "% estado de avance en el diseño del punto de información", "goal": "Completar el diseño del punto de información para el Año 4", "verifier": "Documento estado de avance de diseño (1 por año)", "budget": 0.0, "budgetLabel": "s/p", "funding": "Municipalidad", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["Cámara de Turismo"], "allExecutors": "Municipalidad/ Cámara de Turismo", "observation": "Hacer reunion con Cámara de Turismo y realizar informe de \"gestión\"", "status": "Requiere gestión"}, {"id": 8, "action": "Desarrollo del Plan Maestro en San Gabriel a través del programa Pequeñas localidades de MINVU", "line": "Equipamiento e infra", "objective": "Contar con  infraestructura habilitante para recibir e informar adecuadamente a los habitantes y turistas", "gap": "Actualmente no hay espacios que se entregue información turística que atienda fines de semana y festivos", "indicator": "Avance en diseño e implementación del Plan Maestro", "goal": "Finalizar el diseño y ejecutar la obra detonante para el Año 4", "verifier": "Recepción final de la obra detonante y documentación con diseños integrados (año 4)", "budget": 1300000000.0, "budgetLabel": "1300000000", "funding": "MINVU", "years": ["AÑO 4"], "startQ": 13, "endQ": 16, "executors": ["MINVU"], "allExecutors": "MINVU - Municipalidad (SECPLA)", "observation": "En ejecución, revisar avance con MINVU", "status": "En ejecución"}, {"id": 9, "action": "Diseño infraestructura inclusiva en el marco del proyecto “Modelo de desarrollo turístico inclusivo para personas con ceguera y baja visión”", "line": "Equipamiento e infra", "objective": "Contar con  infraestructura habilitante para recibir e informar adecuadamente a los habitantes y turistas", "gap": "No hay infraestructura inclusiva", "indicator": "% estado de avance en la implementación del circuito", "goal": "Implementar el circuito inclusivo al 100% al finalizar el primer año", "verifier": "Registro fotográfico del Hito inaugural del circuito (año 1)", "budget": 130000000.0, "budgetLabel": "130000000", "funding": "Gobierno Regional de Santiago", "years": ["AÑO 1"], "startQ": 1, "endQ": 4, "executors": ["UTEM"], "allExecutors": "UTEM", "observation": "Acción ya realizada, falta \"Registro fotográfico del Hito inaugural del circuito (año 1)\"", "status": "Realizada sin verificador"}, {"id": 10, "action": "Generar y consolidar la Marca Cajón del Maipo", "line": "Promoción", "objective": "Ser reconocidos a nivel nacional e internacional como un destino turístico preferente de montaña junto a sus atractivos y servicios.", "gap": "No existe desarrollo de la imagen e identidad del destino “Cajón del Maipo”", "indicator": "Número de talleres realizados para la creación de la marca", "goal": "Realizar al menos 8 (2 por año) talleres y aplicar la marca en la promoción al finalizar el año 4", "verifier": "Informe de resultados y registro de talleres", "budget": 10000000.0, "budgetLabel": "10000000", "funding": "GORE", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["Cámara de Turismo", "Consultora"], "allExecutors": "Municipalidad SJM/ Consultora/ Cámara de Turismo", "observation": "Ver con Andes Santiago qué capacitaciones pueden incorporarse ???", "status": "Requiere gestión"}, {"id": 11, "action": "Construir y fortalecer el relato turístico del destino Cajón del Maipo", "line": "Promoción", "objective": "Ser reconocidos a nivel nacional e internacional como un destino turístico preferente de montaña junto a sus atractivos y servicios.", "gap": "No existe desarrollo de la imagen e identidad del destino “Cajón del Maipo”", "indicator": "Número de capacitaciones realizadas para el relato turístico", "goal": "Ejecutar 2 capacitaciones por año durante 2 años (4 en total)", "verifier": "Listado de asistencia y registros de cada capacitación", "budget": 14500000.0, "budgetLabel": "14500000", "funding": "Programa Andes Santiago/ Municipalidad", "years": ["AÑO 3", "AÑO 4"], "startQ": 5, "endQ": 16, "executors": ["Andes Santiago", "Organizaciones"], "allExecutors": "Andes Santiago/ Organizaciones/ Municipalidad SJM", "observation": "Ver con Andes Santiago qué capacitaciones pueden incorporarse ???", "status": "Requiere gestión"}, {"id": 12, "action": "Propuesta de espacio público para estero el manzano, en el marco del proyecto “Programa de eco-conservación, restauración, educación y capacitación en ecosistemas ribereños de la cuenca del río Maipo”.", "line": "Sustentabilidad", "objective": "Mitigar impactos negativos en las comunidades locales identificadas", "gap": "Desregulación y Saturación de atractivos turísticos ya sea por personas o vehículos", "indicator": "Nivel de avance en el desarrollo de la propuesta", "goal": "Completar la propuesta de espacio público en un 100% al finalizar el año", "verifier": "Informe final de la propuesta y documentación del espacio", "budget": 17500000.0, "budgetLabel": "17500000", "funding": "Gobierno Regional de Santiago", "years": ["AÑO 1"], "startQ": 1, "endQ": 4, "executors": ["Fundación Sendero de Chile"], "allExecutors": "Fundación Sendero de Chile", "observation": "Acción ya realizada, falta \"Informe final de la propuesta y documentación del espacio\"", "status": "Realizada sin verificador"}, {"id": 13, "action": "Gestión ante la autoridad correspondiente para estudio de saturación vial de distintas índoles", "line": "Sustentabilidad", "objective": "Mitigar impactos negativos en las comunidades locales identificadas", "gap": "Desregulación y Saturación de atractivos turísticos ya sea por personas o vehículos", "indicator": "N° de estudio de saturación vial", "goal": "Obtener el estudio de saturación vial para el año 4", "verifier": "Actas de reuniones anual y documento final del estudio (año 4)", "budget": 0.0, "budgetLabel": "s/p", "funding": "s/f", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["MOP"], "allExecutors": "Municipio/MOP", "observation": "AJUSTES A REALIZAR (replantear las instituciones responsables de esta acción)", "status": "Requiere ajuste"}, {"id": 14, "action": "Recopilar información de los tours operadores que operan en el M.N. El Morado", "line": "Sustentabilidad", "objective": "Mitigar impactos negativos en las comunidades locales identificadas", "gap": "Desregulación y Saturación de atractivos turísticos ya sea por personas o vehículos", "indicator": "% de información recopilada anualmente", "goal": "Recopilar a lo menos el 70% de los operadores turísticos estimados, que operan en el monumento", "verifier": "Informe con base de datos recopiladas semestralmente (2 por año)", "budget": 0.0, "budgetLabel": "s/p", "funding": "CONAF RM", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["CONAF RM"], "allExecutors": "CONAF RM", "observation": "Hacer reunión con CONAF RM ???", "status": "Requiere gestión"}, {"id": 15, "action": "Desarrollar talleres de conciencia turística por UT a comunidad local y prestadores de servicios turísticos", "line": "Sustentabilidad", "objective": "Mitigar impactos negativos en las comunidades locales identificadas", "gap": "Poca vinculación entre comunidad local y turismo", "indicator": "Número de talleres realizados por unidad territorial", "goal": "Realizar al menos 1 taller por unidad territorial al año", "verifier": "Acta con listado de asistencia y registro fotográfico de cada taller", "budget": 2000000.0, "budgetLabel": "2000000", "funding": "Municipalidad / SERNATUR RM", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["SERNATUR"], "allExecutors": "Sernatur RM / Municipalidad", "observation": "AJUSTES A REALIZAR (aplazar al año 2 o 3, o que sea parte de otra actividad)", "status": "Requiere ajuste"}, {"id": 16, "action": "Fortalecer el concepto del turismo en la ZOIT en Charlas EDAM de CONAF a los colegios", "line": "Sustentabilidad", "objective": "Mitigar impactos negativos en las comunidades locales identificadas", "gap": "Poca vinculación entre comunidad local y turismo", "indicator": "Número de charlas realizadas anualmente", "goal": "Llevar a cabo 2 charlas al año durante 2 años", "verifier": "Certificados de asistencia taller firmados por cada colegio", "budget": 0.0, "budgetLabel": "s/p", "funding": "CONAF RM", "years": ["AÑO 2", "AÑO 3"], "startQ": 5, "endQ": 12, "executors": ["CONAF RM"], "allExecutors": "CONAF RM", "observation": "Hacer reunión con CONAF RM", "status": "Requiere gestión"}, {"id": 17, "action": "Diagnóstico de necesidades / inquietudes comunidad local", "line": "Sustentabilidad", "objective": "Mitigar impactos negativos en las comunidades locales identificadas", "gap": "Poca vinculación entre comunidad local y turismo", "indicator": "Número de informes de diagnóstico realizados", "goal": "Elaborar y entregar 1 informe de resultados por año", "verifier": "Encuestas y análisis de percepción de turismo local", "budget": 0.0, "budgetLabel": "s/p", "funding": "s/p", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["Municipalidad SJM"], "allExecutors": "Municipalidad SJM", "observation": "Va asociado a la conformación de una gobernanza local en SJDM", "status": "Con observación"}, {"id": 18, "action": "Desarrollar talleres de turismo e interpretación ambiental para comunidad local", "line": "Sustentabilidad", "objective": "Mitigar impactos negativos en las comunidades locales identificadas", "gap": "Poca vinculación entre comunidad local y turismo", "indicator": "Número de talleres realizados por unidad territorial", "goal": "Realizar al menos 1 taller por unidad territorial al año", "verifier": "Listado de asistencia y registro fotográfico de cada taller", "budget": 2000000.0, "budgetLabel": "2000000", "funding": "Municipalidad/ GORE (FNDR)", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["Fundeso"], "allExecutors": "FUNDESO / Municipalidad SJM", "observation": "Hacer reunión con FUNDESO", "status": "Requiere gestión"}, {"id": 19, "action": "Calendarizar actividades de carácter patrimonial con perspectiva turística", "line": "Sustentabilidad", "objective": "Mitigar impactos negativos en las comunidades locales identificadas", "gap": "Poca vinculación entre comunidad local y turismo", "indicator": "Número de actividades patrimoniales calendarizadas", "goal": "Generar un calendario anual con al menos 2 actividades patrimoniales al año", "verifier": "Piezas gráficas digitales y plan de difusión de actividades", "budget": 0.0, "budgetLabel": "s/p", "funding": "s/p", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["Municipalidad SJM"], "allExecutors": "Municipalidad SJM", "observation": "Trabajar de manera interna", "status": "Gestión interna"}, {"id": 20, "action": "Catastros inmuebles patrimoniales", "line": "Sustentabilidad", "objective": "Mitigar impactos negativos en las comunidades locales identificadas", "gap": "Poca vinculación entre comunidad local y turismo", "indicator": "% estado de avance de inmuebles patrimoniales catastrados", "goal": "Catastro 100% de todos los inmuebles patrimoniales en 2 años", "verifier": "Ficha técnica detallada de cada inmueble catastrado", "budget": 2000000.0, "budgetLabel": "2000000", "funding": "Municipalidad", "years": ["AÑO 2", "AÑO 3"], "startQ": 5, "endQ": 12, "executors": ["SEREMI BBNN"], "allExecutors": "Municipalidad SJM/ SEREMI BBNN", "observation": "AJUSTES A REALIZAR (Hacer reunión con BBNN)", "status": "Requiere ajuste"}, {"id": 21, "action": "Postular a mejoramiento de paraderos con paneles fotovoltaicos (PMB)", "line": "Sustentabilidad", "objective": "Promover el uso sostenible de recursos naturales", "gap": "Poca luminaria y refugios peatonales en mal estado", "indicator": "Cantidad de paraderos incluidos en la postulación", "goal": "Completar la postulación con todos los paraderos seleccionados", "verifier": "Documentos que acrediten postulación", "budget": 153000000.0, "budgetLabel": "153000000", "funding": "SUBDERE", "years": ["AÑO 3"], "startQ": 9, "endQ": 12, "executors": ["Municipalidad SJM"], "allExecutors": "Municipalidad SJM", "observation": "AJUSTES A REALIZAR (se sugiere ajustar a \"gestiones de factibilidad de implementación\")", "status": "Requiere ajuste"}, {"id": 22, "action": "Desarrollar campaña comunicacional uso del agua en establecimientos turísticos y comunidad local", "line": "Sustentabilidad", "objective": "Promover el uso sostenible de recursos naturales", "gap": "Disponibilidad hídrica cada vez menor", "indicator": "Número de cápsulas de video creadas y difundidas", "goal": "Crear y difundir 2 cápsulas informativas cada año durante 4 años", "verifier": "Acta de registros de difusión de las cápsulas", "budget": 4000000.0, "budgetLabel": "4000000", "funding": "Aguas Andinas/ Seremi Medio Ambiente", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["SEREMI MA", "Aguas Andinas"], "allExecutors": "Aguas Andinas/ Municipalidad (DIDECO – MA) / Seremi Medio Ambiente", "observation": "Hacer reunión con Aguas Andinas y Medio Ambiente", "status": "Requiere gestión"}, {"id": 23, "action": "Desarrollar campaña educativa gestión de residuos", "line": "Sustentabilidad", "objective": "Promover el uso sostenible de recursos naturales", "gap": "Poca gestión de residuos domiciliarios", "indicator": "Número de talleres educativos realizados", "goal": "Realizar al menos 1 taller al año durante 4 años", "verifier": "Listados de asistencia y registros fotográficos de cada taller", "budget": 800000.0, "budgetLabel": "800000", "funding": "Municipalidad", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["SEREMI MA"], "allExecutors": "Municipalidad / Seremi Medio Ambiente", "observation": "Trabajar de manera interna", "status": "Gestión interna"}, {"id": 24, "action": "Desarrollar jornadas de limpieza y retiro de basura en puntos de interés turísticos", "line": "Sustentabilidad", "objective": "Promover el uso sostenible de recursos naturales", "gap": "Poca gestión de residuos domiciliarios", "indicator": "Número de jornadas de limpieza organizadas", "goal": "Llevar a cabo al menos 1 jornada de limpieza cada año durante 4 años", "verifier": "Registro fotográfico y reportes de actividades", "budget": 2000000.0, "budgetLabel": "2000000", "funding": "Municipalidad", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["Sociedad civil"], "allExecutors": "Municipalidad/ Sociedad Civil", "observation": "Avances realizados, recopilar verificadores", "status": "Requiere verificador"}, {"id": 25, "action": "Desarrollar Talleres de control de Chaqueta Amarilla", "line": "Sustentabilidad", "objective": "Promover el uso sostenible de recursos naturales", "gap": "Afectación de la actividad turística por plaga de Chaqueta Amarilla", "indicator": "Número de talleres realizados", "goal": "Realizar al menos 1 taller anual, previo a la temporada estival durante 4 años", "verifier": "Listado de asistencia y registro fotográfico de cada taller", "budget": 0.0, "budgetLabel": "s/p", "funding": "Municipalidad y CONAF RM", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["CONAF RM"], "allExecutors": "CONAF RM", "observation": "Hacer reunión con CONAF RM (llega temporada alta)", "status": "Requiere gestión"}, {"id": 26, "action": "Desarrollar charlas EDAM de la especie y su necesidad de conservación", "line": "Sustentabilidad", "objective": "Promover el uso sostenible de recursos naturales", "gap": "Escaso conocimiento del Gruñidor de El Volcán", "indicator": "Número de charlas de concienciación realizadas", "goal": "Incluir y documentar al menos 1 charla anual en el informe EDAM", "verifier": "Certificados de charlas y reportes de asistencia", "budget": 0.0, "budgetLabel": "s/p", "funding": "CONAF RM – SEREMI M.A.", "years": ["AÑO 2", "AÑO 3"], "startQ": 5, "endQ": 16, "executors": ["CONAF RM", "SEREMI MA"], "allExecutors": "CONAF RM/ SEREMI M.A.", "observation": "No se comentó en la reunión (misma reunión que CONAF RM)", "status": "Con observación"}, {"id": 27, "action": "Instalar TOTEM (sistema CHRONOLOG o similar que permita la visitante captar fotos de puntos específicos", "line": "Sustentabilidad", "objective": "Promover el uso sostenible de recursos naturales", "gap": "Desconocimiento de la dinámica de cambio de los recursos y el paisaje", "indicator": "Número de tótems instalados en sitios estratégicos", "goal": "Instalar 2 tótems (uno en Glaciar, uno en Laguna) al finalizar 4 años", "verifier": "Registro fotográfico y acta de instalación de los tótems", "budget": 0.0, "budgetLabel": "s/p", "funding": "CONAF – Municipalidad – SERNATUR MR", "years": ["AÑO 4"], "startQ": 13, "endQ": 16, "executors": ["CONAF RM"], "allExecutors": "CONAF RM", "observation": "Misma reunión que CONAF RM)", "status": "Con observación"}, {"id": 28, "action": "Identificar, clasificar y destacar productos turísticos por experiencias turísticas", "line": "Desarrollo de productos", "objective": "Generar productos turísticos con identidad territorial", "gap": "Poca articulación entre patrimonio y relato turístico", "indicator": "Número de productos turísticos identificados y clasificados por experiencia", "goal": "Identificar y clasificar al menos 4 productos turísticos en las UT durante los 4 años", "verifier": "Informe final al año 4 de los productos turísticos identificados en las UT´s", "budget": 0.0, "budgetLabel": "s/p", "funding": "Academia", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["Andes Santiago", "Cámara de Turismo", "Academia"], "allExecutors": "Universidad / Andes Santiago / Cámara de Turismo / Municipalidad", "observation": "Trabajar de manera interna", "status": "Gestión interna"}, {"id": 29, "action": "Creación de Ruta patrimonial casco histórico (vinculado a catastro acción 16)", "line": "Desarrollo de productos", "objective": "Generar productos turísticos con identidad territorial", "gap": "Poca articulación entre patrimonio y relato turístico", "indicator": "Creación de una Ruta Patrimonial en el Casco Histórico", "goal": "Completar el diseño e implementación de la Ruta Patrimonial para el Casco Histórico en 4 años", "verifier": "Acta hita de inicio que oficialice la Ruta Patrimonial.", "budget": 2000000.0, "budgetLabel": "2000000", "funding": "Municipalidad – Bienes Nacionales", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["SEREMI BBNN", "Sociedad civil"], "allExecutors": "Municipalidad SJM/ Sociedad Civil / SEREMI BBNN", "observation": "Trabajar de manera interna", "status": "Gestión interna"}, {"id": 30, "action": "Gestionar creación de “Ruta Escénica” para alguna de las rutas G-455; G-345; G-465; G-25", "line": "Desarrollo de productos", "objective": "Generar productos turísticos con identidad territorial", "gap": "Poca articulación entre patrimonio y relato turístico", "indicator": "Un informe de gestión presentado para la declaración de Ruta Escénica", "goal": "Lograr la declaración oficial de una Ruta Escénica para uno de los tramos propuestos en 4 años", "verifier": "Resolución Exenta que declare o no el tramo como Ruta Escénica.", "budget": 0.0, "budgetLabel": "f/i", "funding": "MOP", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["MOP", "SERNATUR"], "allExecutors": "MOP – SERNATUR RM - Municipalidad", "observation": "Coordinar reuniones con instituciones", "status": "Con observación"}, {"id": 31, "action": "Generar acciones para capacitar en torno a Patrimonio natural y cultural", "line": "Capital humano", "objective": "Proporcionar oportunidades de aprendizaje y desarrollo continuo para los empleados y estudiantes, de modo que puedan adquirir nuevas habilidades y conocimientos", "gap": "Déficit en capacitación y especialización en torno a competencias turísticas", "indicator": "Número de capacitaciones realizadas", "goal": "Llevar a cabo 2 capacitaciones por año durante 4 años", "verifier": "Llevar a cabo 2 capacitaciones por año durante 4 años", "budget": 3500000.0, "budgetLabel": "3500000", "funding": "Seremi de Las Culturas/ Andes Santiago/ Municipalidad", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["Andes Santiago", "Academia"], "allExecutors": "Andes STGO / Municipalidad / Academia", "observation": "Trabajar de manera interna", "status": "Gestión interna"}, {"id": 32, "action": "Convenios Municipalidad – Liceo – Servicios Turísticos locales (práctica profesional)", "line": "Capital humano", "objective": "Proporcionar oportunidades de aprendizaje y desarrollo continuo para los empleados y estudiantes, de modo que puedan adquirir nuevas habilidades y conocimientos", "gap": "Falta de oportunidades en turismo para nuevas generaciones", "indicator": "Número de convenios formalizados", "goal": "Formalizar al menos 1 convenio de práctica profesional en 2 años", "verifier": "Copia del convenio firmado y registro de prácticas profesionales realizadas", "budget": 0.0, "budgetLabel": "s/p", "funding": "s/p", "years": ["AÑO 2", "AÑO 3"], "startQ": 5, "endQ": 12, "executors": ["Coorporación"], "allExecutors": "Municipalidad SJM / Corporación", "observation": "En ejecución, faltan verificadores \"Copia del convenio firmado y registro de prácticas profesionales realizadas\"", "status": "En ejecución"}, {"id": 33, "action": "Firma de convenio con Sercotec que participe y asegure su oficina en el territorio", "line": "Capital humano", "objective": "Proporcionar oportunidades de aprendizaje y desarrollo continuo para los empleados y estudiantes, de modo que puedan adquirir nuevas habilidades y conocimientos", "gap": "Falta de oportunidades en turismo para nuevas generaciones", "indicator": "Estado del convenio", "goal": "Firmar un convenio entre la Municipalidad y SERCOTEC en 1 año", "verifier": "Carta de compromiso de participación entre Municipalidad y SERCOTEC", "budget": 0.0, "budgetLabel": "s/p", "funding": "s/p", "years": ["AÑO 1"], "startQ": 1, "endQ": 4, "executors": ["SERCOTEC"], "allExecutors": "Municipalidad / SERCOTEC", "observation": "AJUSTES A REALIZAR (Buscar los acuerdos necesarios entre Municipio y Sercotec)", "status": "Requiere ajuste"}, {"id": 34, "action": "Programa de capacitación para prestadores de servicios turísticos.", "line": "Capital humano", "objective": "Proporcionar oportunidades de aprendizaje y desarrollo continuo para los empleados y estudiantes, de modo que puedan adquirir nuevas habilidades y conocimientos", "gap": "Falta de oportunidades en turismo para nuevas generaciones", "indicator": "Número de capacitaciones realizadas", "goal": "Realizar 2 capacitaciones por año durante 4 años", "verifier": "Registro fotográfico y listado de asistencia de cada capacitación", "budget": 1500000.0, "budgetLabel": "1500000", "funding": "Municipalidad / Andes Santiago", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["SERNATUR", "Andes Santiago", "Cámara de Turismo"], "allExecutors": "Municipalidad / Andes Santiago / Sernatur/ Cámara de Turismo", "observation": "Falta desglose fino, conversar con SERNATUR", "status": "Con observación"}, {"id": 35, "action": "Obtener la distinción de Turismo Municipal", "line": "Gestión y planificación", "objective": "Definir el turismo como un eje prioritario para el territorio y la municipalidad de San José de Maipo", "gap": "No está considerado el turismo como un eje estratégico", "indicator": "Cumplimiento de criterios de distinción", "goal": "Obtener la distinción de Turismo Municipal en 1 año", "verifier": "Distinción emitida por SERNATUR", "budget": 0.0, "budgetLabel": "s/p", "funding": "s/p", "years": ["AÑO 1"], "startQ": 1, "endQ": 4, "executors": ["Municipalidad de San José de Maipo"], "allExecutors": "Municipalidad de San José de Maipo", "observation": "ACCIÓN PRIORITARIA, revisar los avances realizados y avanzar en la coordinación interna", "status": "Con observación"}, {"id": 36, "action": "Operatividad de la Oficina de Información Turística Municipal durante toda la semana, incluido festivos.", "line": "Gestión y planificación", "objective": "Definir el turismo como un eje prioritario para el territorio y la municipalidad de San José de Maipo", "gap": "No está considerado el turismo como un eje estratégico", "indicator": "Cumplimiento de días de operatividad semanal de la oficina", "goal": "Lograr al menos el 70% de operatividad lunes a domingo, incluidos festivos, en 2 años", "verifier": "Acta con Decreto Exento y registros de horarios", "budget": 28800000.0, "budgetLabel": "28800000", "funding": "Municipalidad SJM", "years": ["AÑO 1", "AÑO 2"], "startQ": 1, "endQ": 8, "executors": ["Municipalidad de San José de Maipo"], "allExecutors": "Municipalidad de San José de Maipo", "observation": "Asociado a la actividad 6, ver factibilidad", "status": "Con observación"}, {"id": 37, "action": "Conformar un “Comité de Turismo” permanente en San José de Maipo y generar un plan de trabajo", "line": "Gestión y planificación", "objective": "Definir el turismo como un eje prioritario para el territorio y la municipalidad de San José de Maipo", "gap": "Baja instancias de coordinación y comunicación territorial entre lo público y privado en materia de turismo", "indicator": "Número de sesiones realizadas por año", "goal": "Realizar al menos 3 sesiones al año", "verifier": "Decreto de conformación del comité y actas de sesiones", "budget": 0.0, "budgetLabel": "s/p", "funding": "s/p", "years": ["AÑO 1"], "startQ": 1, "endQ": 4, "executors": ["Cámara de Turismo"], "allExecutors": "Municipalidad de San José de Maipo/ Cámara de Turismo", "observation": "Retomar la \"Mesa de Turismo\", avanzar en gestión interna.", "status": "Con observación"}, {"id": 38, "action": "Conformar una “Mesa Técnica de Seguridad Turística para el destino Cajón del Maipo”", "line": "Gestión y planificación", "objective": "Definir el turismo como un eje prioritario para el territorio y la municipalidad de San José de Maipo", "gap": "Baja instancias de coordinación y comunicación territorial entre lo público y privado en materia de turismo", "indicator": "Número de sesiones anuales", "goal": "Realizar al menos 3 sesiones al año", "verifier": "Actas de las sesiones con lista de asistencia y registro fotográfico", "budget": 0.0, "budgetLabel": "s/p", "funding": "s/p", "years": ["AÑO 1"], "startQ": 1, "endQ": 4, "executors": ["SERNATUR"], "allExecutors": "Municipalidad de San José de MAIPO / DPPC / SERNATUR RM", "observation": "Buscar respaldos con DPPC", "status": "Con observación"}, {"id": 39, "action": "Diseñar e implementar la actualización del PLADETUR", "line": "Gestión y planificación", "objective": "Establecer y fortalecer instrumentos comunales de planificación sólidos en materia de turismo y áreas relacionadas.", "gap": "No se cuentan con instrumentos de gestión y planificación que aporten a la visión del desarrollo turístico del territorio", "indicator": "Completar y aprobar el PLADETUR en un 100% en 3 años", "goal": "Creación de PLADETUR", "verifier": "Decreto Exento y documento del plan actualizado", "budget": 90000000.0, "budgetLabel": "90000000", "funding": "GORE", "years": ["AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 5, "endQ": 16, "executors": ["Municipalidad SJM"], "allExecutors": "Municipalidad SJM", "observation": "Pensado para el año 2", "status": "Con observación"}, {"id": 40, "action": "Incorporar turismo como eje estratégico en los instrumentos de planificación comunal (PLADECO, Plan municipal de cultura y GRD)", "line": "Gestión y planificación", "objective": "Establecer y fortalecer instrumentos comunales de planificación sólidos en materia de turismo y áreas relacionadas.", "gap": "No se cuentan con instrumentos de gestión y planificación que aporten a la visión del desarrollo turístico del territorio", "indicator": "Hacer mención del Turismo como un eje estratégico en los distintos instrumentos de planificación", "goal": "Incluir el turismo como eje en el PLADECO, Plan Municipal de Cultura y GRD en un plazo de 4 años", "verifier": "Documentos oficiales que incluyan el eje turismo", "budget": 0.0, "budgetLabel": "s/p", "funding": "s/p", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["Municipalidad SJM"], "allExecutors": "Municipalidad SJM", "observation": "Buscar verificadores de lo que existe hoy en día", "status": "Con observación"}, {"id": 41, "action": "Formular Plan de Manejo para Reserva Natural Municipal Humedal de Baños Morales y Mirador de Cóndores", "line": "Gestión y planificación", "objective": "Establecer y fortalecer instrumentos comunales de planificación sólidos en materia de turismo y áreas relacionadas.", "gap": "No se cuentan con instrumentos de gestión y planificación que aporten a la visión del desarrollo turístico del territorio", "indicator": "Porcentaje de avance en el diseño del Plan de Manejo", "goal": "Completar el Plan de Manejo en al menos un 70% en 2 años", "verifier": "Decreto Exento y documento del Plan de Manejo", "budget": 120000000.0, "budgetLabel": "120000000", "funding": "MEDIO AMBIENTE / GORE", "years": ["AÑO 2", "AÑO 3"], "startQ": 5, "endQ": 16, "executors": ["Municipalidad SJM"], "allExecutors": "Municipalidad SJM", "observation": "Existe un Plan de Manejo para el Humedal, buscar verificadores. Para el Mirador de Cóndores está parado", "status": "Con observación"}, {"id": 42, "action": "Generar una línea de base turística", "line": "Gestión y planificación", "objective": "Establecer y fortalecer instrumentos comunales de planificación sólidos en materia de turismo y áreas relacionadas.", "gap": "No se cuentan con instrumentos de gestión y planificación que aporten a la visión del desarrollo turístico del territorio", "indicator": "Catastro con servicios y atractivos turísticos", "goal": "Completar el inventario de la planta turística del destino en 1 año", "verifier": "Documento con el inventario de servicios y atractivos", "budget": 0.0, "budgetLabel": "s/p", "funding": "s/p", "years": ["AÑO 1", "AÑO 2"], "startQ": 1, "endQ": 4, "executors": ["Municipalidad SJM"], "allExecutors": "Municipalidad SJM", "observation": "Documento basal para la Municipalidad (Dirección de Turismo)", "status": "Con observación"}, {"id": 43, "action": "Diseñar un plan de seguridad comunal que aporte a los puntos críticos turísticos", "line": "Gestión y planificación", "objective": "Establecer y fortalecer instrumentos comunales de planificación sólidos en materia de turismo y áreas relacionadas.", "gap": "No se cuentan con instrumentos de gestión y planificación que aporten a la visión del desarrollo turístico del territorio", "indicator": "Cumplimiento del Plan de Seguridad", "goal": "Plan de Seguridad aprobado en 2 años", "verifier": "Documento del Plan de Seguridad", "budget": 1000000.0, "budgetLabel": "1000000", "funding": "Municipalidad", "years": ["AÑO 2", "AÑO 3"], "startQ": 5, "endQ": 16, "executors": ["Municipalidad SJM"], "allExecutors": "Municipalidad SJM", "observation": "Documentar de accidentes e incidentes que ocurren en el territorio, incorporar puntos críticos. (¿es posible verificar con Felipe Acevedo?) Vinculado a la acción 38", "status": "Con observación"}, {"id": 44, "action": "Desarrollar un sistema local y permanente de levantamiento y análisis de datos", "line": "Gestión y planificación", "objective": "Establecer y fortalecer instrumentos comunales de ordenamiento territorial sólidos en materia de turismo y áreas relacionadas.", "gap": "Baja sistematización de datos e información de turismo en la comuna", "indicator": "Sistema diseñado, implementado y operativo, realizando levantamiento y análisis de datos al menos 2 veces al año.", "goal": "Realizar el levantamiento y análisis de datos al menos 2 veces por año a partir de su implementación (Plataforma de análisis de datos)", "verifier": "Plataforma del sistema de análisis de datos diseñado e implementado en el territorio", "budget": 2000000.0, "budgetLabel": "2000000", "funding": "Municipalidad", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["Municipalidad SJM"], "allExecutors": "Municipalidad SJM", "observation": "REQUIERE AJUSTES - Reactivar Observatorio con la Cámara de Turismo", "status": "Con observación"}, {"id": 45, "action": "Proveer datos para el observatorio turístico implementado", "line": "Gestión y planificación", "objective": "Establecer y fortalecer instrumentos comunales de ordenamiento territorial sólidos en materia de turismo y áreas relacionadas.", "gap": "Baja sistematización de datos e información de turismo en la comuna", "indicator": "Cantidad de entregas de datos turísticos proporcionados al observatorio por año (Estado de avance de los datos)", "goal": "Realizar al menos 4 entregas de datos turísticos anualmente durante los 4 años de la implementación.", "verifier": "Registros de entrega de datos del observatorio público", "budget": 0.0, "budgetLabel": "s/p", "funding": "s/p", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["SERNATUR", "Cámara de Turismo", "Academia"], "allExecutors": "Municipalidad / Academia / Sernatur/ Cámara de Turismo", "observation": "REQUIERE AJUSTES - Reactivar Observatorio con la Cámara de Turismo", "status": "Con observación"}, {"id": 46, "action": "Elaborar fichas diagnóstico de Atractivos Turísticos de la Comuna", "line": "Gestión y planificación", "objective": "Establecer y fortalecer instrumentos comunales de ordenamiento territorial sólidos en materia de turismo y áreas relacionadas.", "gap": "Baja sistematización de datos e información de turismo en la comuna", "indicator": "Número de fichas elaboradas en relación con el total de oferta", "goal": "Contar con fichas de la totalidad de los atractivos turisticos en 4 años", "verifier": "Documento consolidado con diagnóstico de atractivos turísticos", "budget": 0.0, "budgetLabel": "s/p", "funding": "s/p", "years": ["AÑO 1", "AÑO 2", "AÑO 3", "AÑO 4"], "startQ": 1, "endQ": 16, "executors": ["SERNATUR", "Academia", "Guías  de turismo"], "allExecutors": "Municipalidad/Sernatur/Guías de Turismo/Academia", "observation": "nan", "status": "Con observación"}, {"id": 47, "action": "Elaborar nueva ordenanza municipal en Turismo Aventura y regular el uso público en las áreas protegidas comunales", "line": "Gestión y planificación", "objective": "Establecer y fortalecer instrumentos comunales de ordenamiento territorial sólidos en materia de turismo y áreas relacionadas.", "gap": "Debilidad en las ordenanzas municipales respecto al Turismo", "indicator": "Numero de ordenanza municipal en turismo aventura", "goal": "Aprobar la Ordenanza en Turismo Aventura en 2 años (final año 4)", "verifier": "Decreto Exento y documento de la ordenanza", "budget": 0.0, "budgetLabel": "s/p", "funding": "Municipalidad", "years": ["AÑO 2", "AÑO 3"], "startQ": 5, "endQ": 16, "executors": ["CONAF RM"], "allExecutors": "Municipalidad SJM / apoyo CONAF RM", "observation": "Verificadores", "status": "Con observación"}, {"id": 48, "action": "Elaborar ordenanza municipal en Servicios Turísticos", "line": "Gestión y planificación", "objective": "Establecer y fortalecer instrumentos comunales de ordenamiento territorial sólidos en materia de turismo y áreas relacionadas.", "gap": "Debilidad en las ordenanzas municipales respecto al Turismo", "indicator": "Numero de ordenanza municipal en servicios turísticos", "goal": "Aprobar la Ordenanza en Servicios Turísticos en 2 años (final año 4)", "verifier": "Decreto Exento y documento de la ordenanza", "budget": 0.0, "budgetLabel": "s/p", "funding": "Municipalidad", "years": ["AÑO 2", "AÑO 3"], "startQ": 5, "endQ": 16, "executors": ["Municipalidad SJM"], "allExecutors": "Municipalidad SJM", "observation": "nan", "status": "Con observación"}, {"id": 49, "action": "Incorporar el enfoque turístico a la ordenanza de medio ambiente", "line": "Gestión y planificación", "objective": "Establecer y fortalecer instrumentos comunales de ordenamiento territorial sólidos en materia de turismo y áreas relacionadas.", "gap": "Debilidad en las ordenanzas municipales respecto al Turismo", "indicator": "Nivel de incorporación del turismo en la ordenanza ambiental", "goal": "Incluir el enfoque turístico en la Ordenanza de Medio Ambiente en 1 año", "verifier": "Decreto Exento y documento actualizado de la ordenanza", "budget": 0.0, "budgetLabel": "s/p", "funding": "s/p", "years": ["AÑO 4"], "startQ": 13, "endQ": 16, "executors": ["Municipalidad SJM"], "allExecutors": "Municipalidad SJM", "observation": "nan", "status": "Con observación"}, {"id": 50, "action": "Creación de ordenanza para Reserva natural municipal Humedal de Baños Morales y Mirador de Cóndores", "line": "Gestión y planificación", "objective": "Establecer y fortalecer instrumentos comunales de ordenamiento territorial sólidos en materia de turismo y áreas relacionadas.", "gap": "Debilidad en las ordenanzas municipales respecto al Turismo", "indicator": "Numero de ordenanza municipal en Reserva natural municipal", "goal": "Aprobar la Ordenanza Municipal para RENAMU y Mirador de Cóndores en 1 año", "verifier": "Decreto Exento y documento de la ordenanza", "budget": 500000.0, "budgetLabel": "500000", "funding": "Municipalidad", "years": ["AÑO 2"], "startQ": 5, "endQ": 8, "executors": ["Municipalidad SJM"], "allExecutors": "Municipalidad SJM", "observation": "nan", "status": "Con observación"}];
+    const DOCUMENTS = [{"title": "Ley 20.423", "file": "Ley-20423_12-FEB-2010.pdf", "type": "Marco legal"}, {"title": "Decreto 30 procedimiento ZOIT", "file": "02-decreto-30-que-fija-procedimiento-zoit.pdf", "type": "Procedimiento"}, {"title": "Decreto ZOIT San José de Maipo 2025", "file": "decretos-d-o-zoit-san-jose-de-maipo-2025.pdf", "type": "Declaratoria"}, {"title": "Plan de acción ZOIT SJDM", "file": "plan-de-accion-zoit-sjdm-2025-2-0-octubre3.pdf", "type": "Plan de acción"}];
+
+    const money = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 });
+    const byId = id => document.getElementById(id);
+    const slug = value => 's-' + value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+    function unique(values) {
+      return [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b, 'es'));
+    }
+
+    function addOptions(id, values) {
+      const select = byId(id);
+      unique(values).forEach(value => {
+        const option = document.createElement('option');
+        option.value = value;
+        option.textContent = value;
+        select.appendChild(option);
+      });
+    }
+
+    function filtered() {
+      const q = byId('search').value.trim().toLowerCase();
+      const line = byId('lineFilter').value;
+      const status = byId('statusFilter').value;
+      const year = byId('yearFilter').value;
+      const executor = byId('executorFilter').value;
+
+      return DATA.filter(item => {
+        const haystack = [item.action, item.line, item.indicator, item.goal, item.verifier, item.observation, item.allExecutors, item.executors.join(' ')].join(' ').toLowerCase();
+        return (!q || haystack.includes(q)) &&
+          (!line || item.line === line) &&
+          (!status || item.status === status) &&
+          (!year || item.years.includes(year)) &&
+          (!executor || item.executors.includes(executor) || item.allExecutors.includes(executor));
+      });
+    }
+
+    function countBy(items, getter) {
+      const counts = {};
+      items.forEach(item => {
+        const values = [].concat(getter(item)).filter(Boolean);
+        values.forEach(value => counts[value] = (counts[value] || 0) + 1);
+      });
+      return counts;
+    }
+
+    function budgetBy(items, getter) {
+      const counts = {};
+      items.forEach(item => {
+        const key = getter(item) || 'Sin clasificar';
+        counts[key] = (counts[key] || 0) + item.budget;
+      });
+      return counts;
+    }
+
+    function renderBars(id, counts, formatter = value => value) {
+      const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+      const max = Math.max(1, ...entries.map(entry => entry[1]));
+      byId(id).innerHTML = entries.map(([label, value]) => `
+        <div class="bar-row" title="${label}">
+          <div class="bar-label">${label}</div>
+          <div class="bar-track"><div class="bar-fill" style="width:${Math.max(3, value / max * 100)}%"></div></div>
+          <div>${formatter(value)}</div>
+        </div>
+      `).join('') || '<p class="note">Sin datos para los filtros seleccionados.</p>';
+    }
+
+    function renderKpis(items) {
+      const totalBudget = items.reduce((sum, item) => sum + item.budget, 0);
+      const withBudget = items.filter(item => item.budget > 0).length;
+      const verifierPending = items.filter(item => item.status.includes('verificador')).length;
+      const activeExecutors = unique(items.flatMap(item => item.executors)).length;
+      byId('kpis').innerHTML = [
+        ['Acciones', items.length],
+        ['Presupuesto identificado', money.format(totalBudget)],
+        ['Con presupuesto', withBudget],
+        ['Pendientes de verificador', verifierPending],
+        ['Ejecutores activos', activeExecutors],
+      ].map(([label, value]) => `<div class="kpi"><div class="label">${label}</div><div class="value">${value}</div></div>`).join('');
+    }
+
+    function renderGantt(items) {
+      const quarters = Array.from({length: 16}, (_, index) => index + 1);
+      byId('gantt').innerHTML = `
+        <table class="gantt-table">
+          <thead><tr><th>N°</th><th>Acción</th>${quarters.map(q => `<th class="q">T${q}</th>`).join('')}</tr></thead>
+          <tbody>
+          ${items.map(item => `
+            <tr>
+              <td>${item.id}</td>
+              <td>${item.action}</td>
+              ${quarters.map(q => `<td class="q">${item.startQ && item.endQ && q >= item.startQ && q <= item.endQ ? '<span class="cell-active"></span>' : ''}</td>`).join('')}
+            </tr>
+          `).join('')}
+          </tbody>
+        </table>`;
+    }
+
+    function renderTable(items) {
+      byId('table').innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>N°</th><th>Acción</th><th>Línea</th><th>Estado lectura</th><th>Años</th><th>Trimestres</th><th>Ejecutores</th><th>Presupuesto</th><th>Observación</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${items.map(item => `
+              <tr>
+                <td>${item.id}</td>
+                <td><strong>${item.action}</strong><br><span class="note">${item.indicator}</span></td>
+                <td>${item.line}</td>
+                <td><span class="status-pill ${slug(item.status)}">${item.status}</span></td>
+                <td>${item.years.join(', ')}</td>
+                <td>${item.startQ && item.endQ ? `T${item.startQ} - T${item.endQ}` : ''}</td>
+                <td>${item.allExecutors || item.executors.join(', ')}</td>
+                <td>${item.budget ? money.format(item.budget) : item.budgetLabel}</td>
+                <td>${item.observation}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>`;
+    }
+
+    function renderDocs() {
+      byId('docs').innerHTML = DOCUMENTS.map(doc => `
+        <a class="doc" href="${doc.file}" target="_blank">
+          <strong>${doc.title}</strong>
+          <span>${doc.type}</span>
+        </a>
+      `).join('');
+    }
+
+    function update() {
+      const items = filtered();
+      renderKpis(items);
+      renderBars('statusChart', countBy(items, item => item.status));
+      renderBars('lineChart', countBy(items, item => item.line));
+      renderBars('yearChart', countBy(items, item => item.years));
+      renderBars('budgetChart', budgetBy(items, item => item.line), value => money.format(value));
+      renderGantt(items);
+      renderTable(items);
+    }
+
+    addOptions('lineFilter', DATA.map(item => item.line));
+    addOptions('statusFilter', DATA.map(item => item.status));
+    addOptions('yearFilter', DATA.flatMap(item => item.years));
+    addOptions('executorFilter', DATA.flatMap(item => item.executors));
+    ['search', 'lineFilter', 'statusFilter', 'yearFilter', 'executorFilter'].forEach(id => byId(id).addEventListener('input', update));
+    renderDocs();
+    update();
+  </script>
+</body>
+</html>
