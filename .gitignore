@@ -2,3 +2,6 @@
 *.xls
 *.pdf
 ~$*
+site-version.tar.gz
+gh-pages-build/
+dist/.openai/
