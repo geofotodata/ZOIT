@@ -90,6 +90,18 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 12px;
     }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+      align-items: start;
+    }
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 16px;
+    }
     .card {
       display: block;
       min-height: 190px;
@@ -135,9 +147,17 @@
       margin: 0 0 10px;
       font-size: 22px;
     }
+    .panel h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
     .panel p, li {
       color: var(--muted);
       line-height: 1.5;
+    }
+    .list {
+      margin: 8px 0 0;
+      padding-left: 18px;
     }
     .empty {
       border-left: 4px solid var(--gold);
@@ -150,7 +170,7 @@
       font-size: 13px;
     }
     @media (max-width: 900px) {
-      .grid, .section-grid { grid-template-columns: 1fr; }
+      .grid, .section-grid, .info-grid, .detail-grid { grid-template-columns: 1fr; }
       header, main, footer { padding-left: 16px; padding-right: 16px; }
       .card { min-height: auto; }
     }
@@ -170,9 +190,32 @@
       <a class="button" href="../isla-de-maipo/index.html">Isla de Maipo</a>
     </nav>
     
-    <section class="panel">
-      <h2>Pirque</h2>
-      <p>Espacio listo para incorporar dashboard, mesa publico privada, actas y sugerencias.</p>
+    <section class="info-grid">
+      <div class="panel">
+        <h2>Descripcion de la ZOIT</h2>
+        <p>Destino asociado al enoturismo, turismo de intereses especiales, naturaleza, cultura local y gastronomia.</p>
+        <p><strong>Vision:</strong> Pirque sera al 2029 un destino turistico sustentable e innovador, reconocido como icono del enoturismo y el turismo de intereses especiales.</p>
+        <p><strong>Foco turistico:</strong> Vinas, bodegas, turismo rural, Parque Nacional Rio Clarillo, gastronomia, artesania, patrimonio local y rutas de experiencias.</p>
+      </div>
+      <div class="panel">
+        <h2>Plan de accion</h2>
+        <p>Plan de Accion ZOIT Pirque, septiembre 2025.</p>
+        <p>El plan se implementa mediante Mesa Publico Privada, gobernanza territorial, nivel tecnico y coordinacion ejecutiva.</p>
+      </div>
+    </section>
+    <section class="detail-grid">
+      <div class="panel">
+        <h3>Atractivos y recursos</h3>
+        <ul class="list"><li>Vinas Concha y Toro, El Principal, Haras de Pirque, Alyan, Santa Alicia, William Fevre y Apaltagua</li><li>Parque Nacional Rio Clarillo</li><li>Pueblito de artesanos</li><li>Casas patrimoniales y parroquia historica</li><li>Fiestas costumbristas</li></ul>
+      </div>
+      <div class="panel">
+        <h3>Lineas de accion</h3>
+        <ul class="list"><li>Equipamiento e infraestructura</li><li>Promocion</li><li>Sustentabilidad</li><li>Desarrollo de productos y experiencias</li><li>Capital humano</li></ul>
+      </div>
+      <div class="panel">
+        <h3>Accesos del sitio</h3>
+        <p>Ingrese a la seccion correspondiente para revisar seguimiento, integrantes, documentos o sugerencias.</p>
+      </div>
     </section>
     <section class="section-grid"><a class="card" href="dashboard/index.html">
           <h3>Dashboard</h3>

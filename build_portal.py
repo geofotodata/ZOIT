@@ -10,23 +10,66 @@ COMMUNES = [
         "slug": "san-jose-de-maipo",
         "name": "San Jose de Maipo",
         "status": "Dashboard disponible",
-        "description": "Monitoreo del Plan de Accion ZOIT Cajon del Maipo desde la hoja PA-V1.",
+        "description": "Destino cordillerano orientado a naturaleza, aventura, patrimonio local y desarrollo turistico sustentable.",
+        "plan": "Plan de Accion ZOIT San Jose de Maipo, octubre 2025.",
+        "vision": "Al 2030 busca convertirse en referente turistico de los Andes Centrales, reconocido nacional e internacionalmente por su condicion cordillerana, oferta de actividades y servicios turisticos sustentables.",
+        "focus": "Montana, senderismo, escalada, rafting, observacion de aves, cabalgatas, termas, embalses, patrimonio ferroviario y localidades cordilleranas.",
+        "attractions": [
+            "Parque y Monumento Natural El Morado",
+            "Embalse El Yeso",
+            "Volcan Tupungato",
+            "Mirador de Condores",
+            "Banos Morales y Termas Valle de Colina",
+            "Casco historico de San Jose de Maipo",
+        ],
+        "governance": "El plan es gestionado, monitoreado e implementado por la Mesa Publico Privada de la ZOIT, con reglamento propio y gobernanza territorial.",
         "dashboard": True,
     },
     {
         "slug": "pirque",
         "name": "Pirque",
         "status": "Sitio preparado",
-        "description": "Espacio listo para incorporar dashboard, mesa publico privada, actas y sugerencias.",
+        "description": "Destino asociado al enoturismo, turismo de intereses especiales, naturaleza, cultura local y gastronomia.",
+        "plan": "Plan de Accion ZOIT Pirque, septiembre 2025.",
+        "vision": "Pirque sera al 2029 un destino turistico sustentable e innovador, reconocido como icono del enoturismo y el turismo de intereses especiales.",
+        "focus": "Vinas, bodegas, turismo rural, Parque Nacional Rio Clarillo, gastronomia, artesania, patrimonio local y rutas de experiencias.",
+        "attractions": [
+            "Vinas Concha y Toro, El Principal, Haras de Pirque, Alyan, Santa Alicia, William Fevre y Apaltagua",
+            "Parque Nacional Rio Clarillo",
+            "Pueblito de artesanos",
+            "Casas patrimoniales y parroquia historica",
+            "Fiestas costumbristas",
+        ],
+        "governance": "El plan se implementa mediante Mesa Publico Privada, gobernanza territorial, nivel tecnico y coordinacion ejecutiva.",
         "dashboard": False,
     },
     {
         "slug": "isla-de-maipo",
         "name": "Isla de Maipo",
         "status": "Sitio preparado",
-        "description": "Espacio listo para incorporar dashboard, mesa publico privada, actas y sugerencias.",
+        "description": "Destino rural y vitivinicola con patrimonio cultural, actividades al aire libre, festividades y paisaje agricola.",
+        "plan": "Plan de Accion ZOIT Isla de Maipo, septiembre 2025.",
+        "vision": "Al 2030 sera reconocida como referente regional, nacional e internacional en turismo rural, enoturismo, deporte y patrimonio cultural, con desarrollo sostenible e identidad local.",
+        "focus": "Enoturismo, turismo rural, cicloturismo, patrimonio religioso y cultural, fiestas tradicionales, naturaleza y borde del Rio Maipo.",
+        "attractions": [
+            "Humedal",
+            "Rio Maipo",
+            "Cerros de Naltagua",
+            "Fiesta de la Vendimia",
+            "Fiesta de la Virgen de la Merced",
+            "Casco historico y rutas del vino",
+        ],
+        "governance": "El plan considera gestion participativa entre comunidad, sector publico y privado mediante Mesa Publico Privada y reglamento de funcionamiento.",
         "dashboard": False,
     },
+]
+
+LINES = [
+    "Equipamiento e infraestructura",
+    "Promocion",
+    "Sustentabilidad",
+    "Desarrollo de productos y experiencias",
+    "Capital humano",
 ]
 
 SECTIONS = [
@@ -123,6 +166,18 @@ STYLE = """
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 12px;
     }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+      align-items: start;
+    }
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 16px;
+    }
     .card {
       display: block;
       min-height: 190px;
@@ -168,9 +223,17 @@ STYLE = """
       margin: 0 0 10px;
       font-size: 22px;
     }
+    .panel h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
     .panel p, li {
       color: var(--muted);
       line-height: 1.5;
+    }
+    .list {
+      margin: 8px 0 0;
+      padding-left: 18px;
     }
     .empty {
       border-left: 4px solid var(--gold);
@@ -183,7 +246,7 @@ STYLE = """
       font-size: 13px;
     }
     @media (max-width: 900px) {
-      .grid, .section-grid { grid-template-columns: 1fr; }
+      .grid, .section-grid, .info-grid, .detail-grid { grid-template-columns: 1fr; }
       header, main, footer { padding-left: 16px; padding-right: 16px; }
       .card { min-height: auto; }
     }
@@ -236,13 +299,25 @@ def build_home():
           <span class="pill">{commune['status']}</span>
           <h2>{commune['name']}</h2>
           <p>{commune['description']}</p>
+          <p><strong>Vision:</strong> {commune['vision']}</p>
         </a>"""
         for commune in COMMUNES
     )
+    lines = "".join(f"<li>{line}</li>" for line in LINES)
     body = f"""
     <section class="panel">
       <h2>Seleccione un destino ZOIT</h2>
-      <p>Este portal central organiza el monitoreo territorial, la gobernanza publico privada, las actas, publicaciones y canales de sugerencias para cada comuna.</p>
+      <p>Este portal central organiza la informacion base de tres Zonas de Interes Turistico y permite ingresar a sus dashboards, mesas publico privadas, actas, publicaciones y canales de sugerencias.</p>
+    </section>
+    <section class="info-grid">
+      <div class="panel">
+        <h2>Que se monitorea</h2>
+        <p>Cada plan de accion funciona como carta de navegacion para cuatro anos de gestion, con compromisos, brechas, indicadores, responsables y medios de verificacion.</p>
+      </div>
+      <div class="panel">
+        <h2>Lineas estrategicas comunes</h2>
+        <ul class="list">{lines}</ul>
+      </div>
     </section>
     <section class="grid">{cards}</section>
 """
@@ -266,10 +341,35 @@ def build_commune(commune):
         </a>"""
         for slug, label, description in SECTIONS
     )
+    attraction_items = "".join(f"<li>{item}</li>" for item in commune["attractions"])
+    line_items = "".join(f"<li>{line}</li>" for line in LINES)
     body = f"""
-    <section class="panel">
-      <h2>{commune['name']}</h2>
-      <p>{commune['description']}</p>
+    <section class="info-grid">
+      <div class="panel">
+        <h2>Descripcion de la ZOIT</h2>
+        <p>{commune['description']}</p>
+        <p><strong>Vision:</strong> {commune['vision']}</p>
+        <p><strong>Foco turistico:</strong> {commune['focus']}</p>
+      </div>
+      <div class="panel">
+        <h2>Plan de accion</h2>
+        <p>{commune['plan']}</p>
+        <p>{commune['governance']}</p>
+      </div>
+    </section>
+    <section class="detail-grid">
+      <div class="panel">
+        <h3>Atractivos y recursos</h3>
+        <ul class="list">{attraction_items}</ul>
+      </div>
+      <div class="panel">
+        <h3>Lineas de accion</h3>
+        <ul class="list">{line_items}</ul>
+      </div>
+      <div class="panel">
+        <h3>Accesos del sitio</h3>
+        <p>Ingrese a la seccion correspondiente para revisar seguimiento, integrantes, documentos o sugerencias.</p>
+      </div>
     </section>
     <section class="section-grid">{links}</section>
 """

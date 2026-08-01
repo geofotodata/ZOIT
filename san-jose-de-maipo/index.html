@@ -90,6 +90,18 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 12px;
     }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+      align-items: start;
+    }
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 16px;
+    }
     .card {
       display: block;
       min-height: 190px;
@@ -135,9 +147,17 @@
       margin: 0 0 10px;
       font-size: 22px;
     }
+    .panel h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
     .panel p, li {
       color: var(--muted);
       line-height: 1.5;
+    }
+    .list {
+      margin: 8px 0 0;
+      padding-left: 18px;
     }
     .empty {
       border-left: 4px solid var(--gold);
@@ -150,7 +170,7 @@
       font-size: 13px;
     }
     @media (max-width: 900px) {
-      .grid, .section-grid { grid-template-columns: 1fr; }
+      .grid, .section-grid, .info-grid, .detail-grid { grid-template-columns: 1fr; }
       header, main, footer { padding-left: 16px; padding-right: 16px; }
       .card { min-height: auto; }
     }
@@ -170,9 +190,32 @@
       <a class="button" href="../isla-de-maipo/index.html">Isla de Maipo</a>
     </nav>
     
-    <section class="panel">
-      <h2>San Jose de Maipo</h2>
-      <p>Monitoreo del Plan de Accion ZOIT Cajon del Maipo desde la hoja PA-V1.</p>
+    <section class="info-grid">
+      <div class="panel">
+        <h2>Descripcion de la ZOIT</h2>
+        <p>Destino cordillerano orientado a naturaleza, aventura, patrimonio local y desarrollo turistico sustentable.</p>
+        <p><strong>Vision:</strong> Al 2030 busca convertirse en referente turistico de los Andes Centrales, reconocido nacional e internacionalmente por su condicion cordillerana, oferta de actividades y servicios turisticos sustentables.</p>
+        <p><strong>Foco turistico:</strong> Montana, senderismo, escalada, rafting, observacion de aves, cabalgatas, termas, embalses, patrimonio ferroviario y localidades cordilleranas.</p>
+      </div>
+      <div class="panel">
+        <h2>Plan de accion</h2>
+        <p>Plan de Accion ZOIT San Jose de Maipo, octubre 2025.</p>
+        <p>El plan es gestionado, monitoreado e implementado por la Mesa Publico Privada de la ZOIT, con reglamento propio y gobernanza territorial.</p>
+      </div>
+    </section>
+    <section class="detail-grid">
+      <div class="panel">
+        <h3>Atractivos y recursos</h3>
+        <ul class="list"><li>Parque y Monumento Natural El Morado</li><li>Embalse El Yeso</li><li>Volcan Tupungato</li><li>Mirador de Condores</li><li>Banos Morales y Termas Valle de Colina</li><li>Casco historico de San Jose de Maipo</li></ul>
+      </div>
+      <div class="panel">
+        <h3>Lineas de accion</h3>
+        <ul class="list"><li>Equipamiento e infraestructura</li><li>Promocion</li><li>Sustentabilidad</li><li>Desarrollo de productos y experiencias</li><li>Capital humano</li></ul>
+      </div>
+      <div class="panel">
+        <h3>Accesos del sitio</h3>
+        <p>Ingrese a la seccion correspondiente para revisar seguimiento, integrantes, documentos o sugerencias.</p>
+      </div>
     </section>
     <section class="section-grid"><a class="card" href="dashboard/index.html">
           <h3>Dashboard</h3>

@@ -1,11 +1,13 @@
-# Dashboard ZOIT San Jose de Maipo
+# Portal ZOIT
 
-Dashboard local para monitorear el Plan de Accion ZOIT San Jose de Maipo desde la hoja `PA-V1` del archivo Excel de seguimiento.
+Portal web para organizar informacion, dashboard, mesa publico privada, actas, publicaciones y sugerencias de tres Zonas de Interes Turistico: San Jose de Maipo, Pirque e Isla de Maipo.
 
 ## Archivos principales
 
-- `dashboard_zoit_pa_v1.html`: dashboard listo para abrir en el navegador.
+- `index.html`: portada central del portal.
+- `dashboard_zoit_pa_v1.html`: dashboard de San Jose de Maipo listo para abrir en el navegador.
 - `build_dashboard_zoit.py`: generador del dashboard desde el Excel.
+- `build_portal.py`: generador de la estructura central del portal.
 
 El Excel fuente y los documentos PDF se mantienen fuera del repositorio. Para regenerar el dashboard, deben estar disponibles en la carpeta local del proyecto con los nombres esperados por el script.
 

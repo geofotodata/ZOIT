@@ -90,6 +90,18 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 12px;
     }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+      align-items: start;
+    }
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 16px;
+    }
     .card {
       display: block;
       min-height: 190px;
@@ -135,9 +147,17 @@
       margin: 0 0 10px;
       font-size: 22px;
     }
+    .panel h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
     .panel p, li {
       color: var(--muted);
       line-height: 1.5;
+    }
+    .list {
+      margin: 8px 0 0;
+      padding-left: 18px;
     }
     .empty {
       border-left: 4px solid var(--gold);
@@ -150,7 +170,7 @@
       font-size: 13px;
     }
     @media (max-width: 900px) {
-      .grid, .section-grid { grid-template-columns: 1fr; }
+      .grid, .section-grid, .info-grid, .detail-grid { grid-template-columns: 1fr; }
       header, main, footer { padding-left: 16px; padding-right: 16px; }
       .card { min-height: auto; }
     }
@@ -170,9 +190,32 @@
       <a class="button" href="../isla-de-maipo/index.html">Isla de Maipo</a>
     </nav>
     
-    <section class="panel">
-      <h2>Isla de Maipo</h2>
-      <p>Espacio listo para incorporar dashboard, mesa publico privada, actas y sugerencias.</p>
+    <section class="info-grid">
+      <div class="panel">
+        <h2>Descripcion de la ZOIT</h2>
+        <p>Destino rural y vitivinicola con patrimonio cultural, actividades al aire libre, festividades y paisaje agricola.</p>
+        <p><strong>Vision:</strong> Al 2030 sera reconocida como referente regional, nacional e internacional en turismo rural, enoturismo, deporte y patrimonio cultural, con desarrollo sostenible e identidad local.</p>
+        <p><strong>Foco turistico:</strong> Enoturismo, turismo rural, cicloturismo, patrimonio religioso y cultural, fiestas tradicionales, naturaleza y borde del Rio Maipo.</p>
+      </div>
+      <div class="panel">
+        <h2>Plan de accion</h2>
+        <p>Plan de Accion ZOIT Isla de Maipo, septiembre 2025.</p>
+        <p>El plan considera gestion participativa entre comunidad, sector publico y privado mediante Mesa Publico Privada y reglamento de funcionamiento.</p>
+      </div>
+    </section>
+    <section class="detail-grid">
+      <div class="panel">
+        <h3>Atractivos y recursos</h3>
+        <ul class="list"><li>Humedal</li><li>Rio Maipo</li><li>Cerros de Naltagua</li><li>Fiesta de la Vendimia</li><li>Fiesta de la Virgen de la Merced</li><li>Casco historico y rutas del vino</li></ul>
+      </div>
+      <div class="panel">
+        <h3>Lineas de accion</h3>
+        <ul class="list"><li>Equipamiento e infraestructura</li><li>Promocion</li><li>Sustentabilidad</li><li>Desarrollo de productos y experiencias</li><li>Capital humano</li></ul>
+      </div>
+      <div class="panel">
+        <h3>Accesos del sitio</h3>
+        <p>Ingrese a la seccion correspondiente para revisar seguimiento, integrantes, documentos o sugerencias.</p>
+      </div>
     </section>
     <section class="section-grid"><a class="card" href="dashboard/index.html">
           <h3>Dashboard</h3>
