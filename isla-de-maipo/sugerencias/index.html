@@ -4,246 +4,56 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sugerencias - Isla de Maipo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
   <style>
     :root {
-      --bg: #f6f9fc;
-      --ink: #17212b;
-      --muted: #5f6f7b;
+      --bg: #f4f6f1;
+      --ink: #17211b;
+      --muted: #63736a;
       --panel: #ffffff;
-      --line: #d9e3ea;
-      --primary: #005A9C;
-      --secondary: #0099CC;
-      --success: #2E7D32;
-      --warning: #F9A825;
-      --error: #C62828;
-      --shadow: 0 10px 28px rgba(22, 45, 70, .08);
-      --radius: 12px;
+      --line: #dce3da;
+      --green: #1f6f55;
+      --green-dark: #163b31;
+      --gold: #d6a64b;
+      --blue: #315f89;
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Inter, Arial, Helvetica, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       color: var(--ink);
       background: var(--bg);
     }
-    a { color: inherit; }
-    a:focus-visible, button:focus-visible, input:focus-visible {
-      outline: 3px solid rgba(0, 153, 204, .45);
-      outline-offset: 2px;
-    }
-    .app-header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      display: grid;
-      grid-template-columns: auto minmax(180px, 1fr) minmax(220px, 460px) auto;
-      gap: 14px;
-      align-items: center;
-      min-height: 72px;
-      padding: 12px 24px;
-      background: rgba(255, 255, 255, .96);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(12px);
-    }
-    .brand-mark {
-      display: grid;
-      place-items: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
+    header {
+      background: var(--green-dark);
       color: #fff;
-      background: var(--primary);
-      font-weight: 800;
+      padding: 28px;
+      border-bottom: 5px solid var(--gold);
     }
-    .brand-title strong {
-      display: block;
-      font-size: 17px;
-    }
-    .brand-title span {
-      display: block;
-      font-size: 13px;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-    .search {
-      position: relative;
-    }
-    .search .material-symbols-outlined {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--muted);
-      font-size: 21px;
-    }
-    .search input {
-      width: 100%;
-      min-height: 44px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 10px 14px 10px 42px;
-      background: #f9fbfd;
-      color: var(--ink);
-      font: inherit;
-    }
-    .header-actions {
-      display: flex;
-      gap: 8px;
-      justify-content: flex-end;
-    }
-    .icon-button {
-      display: inline-grid;
-      place-items: center;
-      width: 42px;
-      height: 42px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: #fff;
-      color: var(--primary);
-      text-decoration: none;
-    }
-    .layout {
-      display: grid;
-      grid-template-columns: 248px minmax(0, 1fr);
-      gap: 20px;
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    .side-panel {
-      position: sticky;
-      top: 92px;
-      align-self: start;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 10px;
-    }
-    .side-panel a {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-height: 42px;
-      padding: 9px 10px;
-      border-radius: 10px;
-      color: var(--ink);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 14px;
-    }
-    .side-panel a:hover {
-      background: #eef7fb;
-      color: var(--primary);
-    }
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
-      gap: 18px;
-      align-items: stretch;
-      margin-bottom: 18px;
-    }
-    .hero-copy {
-      min-height: 310px;
-      border-radius: var(--radius);
-      padding: 32px;
-      color: #fff;
-      background: #073e67;
-      box-shadow: var(--shadow);
-    }
+    header a { color: #f7e1aa; text-decoration: none; }
     .eyebrow {
-      margin: 0 0 10px;
-      color: #cceeff;
+      margin: 0 0 8px;
+      color: #c8ddd3;
       font-size: 13px;
-      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: .08em;
     }
     h1 {
       margin: 0;
-      font-size: clamp(32px, 5vw, 56px);
+      font-size: clamp(28px, 4vw, 46px);
       line-height: 1.05;
       letter-spacing: 0;
     }
-    .hero-copy p {
+    header p {
       margin: 12px 0 0;
       max-width: 900px;
-      color: #e3f5ff;
+      color: #e4eee8;
       line-height: 1.5;
       font-size: 16px;
     }
-    .map-preview {
-      position: relative;
-      overflow: hidden;
-      min-height: 310px;
-      border-radius: var(--radius);
-      background:
-        linear-gradient(90deg, rgba(0,90,156,.12) 1px, transparent 1px),
-        linear-gradient(rgba(0,90,156,.12) 1px, transparent 1px),
-        #edf7fb;
-      background-size: 36px 36px;
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-    }
-    .map-preview::before,
-    .map-preview::after {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-      background: rgba(0, 153, 204, .22);
-    }
-    .map-preview::before {
-      width: 250px;
-      height: 250px;
-      right: -70px;
-      top: -50px;
-    }
-    .map-preview::after {
-      width: 190px;
-      height: 190px;
-      left: -60px;
-      bottom: -40px;
-      background: rgba(46, 125, 50, .18);
-    }
-    .map-toolbar {
-      position: absolute;
-      right: 14px;
-      top: 14px;
-      display: grid;
-      gap: 8px;
-      z-index: 1;
-    }
-    .map-control {
-      display: grid;
-      place-items: center;
-      width: 40px;
-      height: 40px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: #fff;
-      color: var(--primary);
-      box-shadow: 0 4px 14px rgba(22, 45, 70, .08);
-    }
-    .map-card {
-      position: absolute;
-      left: 18px;
-      right: 76px;
-      bottom: 18px;
-      z-index: 1;
-      padding: 16px;
-      background: rgba(255, 255, 255, .94);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-    .map-card strong { display: block; margin-bottom: 4px; }
-    .map-card span { color: var(--muted); font-size: 14px; line-height: 1.4; }
     main {
-      min-width: 0;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px;
     }
     .toolbar {
       display: flex;
@@ -258,7 +68,7 @@
       min-height: 38px;
       padding: 9px 13px;
       border: 1px solid var(--line);
-      border-radius: 12px;
+      border-radius: 6px;
       color: var(--ink);
       background: #fff;
       text-decoration: none;
@@ -266,34 +76,9 @@
       font-size: 14px;
     }
     .button.primary {
-      background: var(--primary);
+      background: var(--green);
       color: #fff;
-      border-color: var(--primary);
-    }
-    .kpi-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-    .kpi {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 16px;
-      box-shadow: var(--shadow);
-    }
-    .kpi span {
-      display: block;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-    .kpi strong {
-      display: block;
-      margin-top: 7px;
-      font-size: 20px;
+      border-color: var(--green);
     }
     .grid {
       display: grid;
@@ -322,17 +107,14 @@
       min-height: 190px;
       background: var(--panel);
       border: 1px solid var(--line);
-      border-radius: var(--radius);
+      border-radius: 8px;
       padding: 18px;
       text-decoration: none;
       color: var(--ink);
-      box-shadow: 0 4px 18px rgba(22, 45, 70, .05);
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
     .card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(0, 90, 156, .35);
-      box-shadow: var(--shadow);
+      border-color: #91aa9d;
+      box-shadow: 0 8px 24px rgba(22, 59, 49, .08);
     }
     .card h2, .card h3 {
       margin: 0 0 10px;
@@ -349,18 +131,17 @@
       margin-bottom: 16px;
       padding: 5px 9px;
       border-radius: 999px;
-      background: #e6f5fb;
-      color: var(--primary);
+      background: #e8f1ec;
+      color: #1c6047;
       font-size: 12px;
       font-weight: 700;
     }
     .panel {
       background: var(--panel);
       border: 1px solid var(--line);
-      border-radius: var(--radius);
+      border-radius: 8px;
       padding: 20px;
       margin-bottom: 16px;
-      box-shadow: 0 4px 18px rgba(22, 45, 70, .05);
     }
     .panel h2 {
       margin: 0 0 10px;
@@ -379,202 +160,51 @@
       padding-left: 18px;
     }
     .empty {
-      border-left: 4px solid var(--warning);
-    }
-    .icon-heading {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .material-symbols-outlined {
-      font-family: 'Material Symbols Outlined';
-      font-weight: normal;
-      font-style: normal;
-      font-size: 24px;
-      line-height: 1;
-      letter-spacing: normal;
-      text-transform: none;
-      display: inline-block;
-      white-space: nowrap;
-      word-wrap: normal;
-      direction: ltr;
-      -webkit-font-feature-settings: 'liga';
-      -webkit-font-smoothing: antialiased;
+      border-left: 4px solid var(--gold);
     }
     footer {
-      max-width: 1440px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 0 20px 32px;
+      padding: 0 24px 32px;
       color: var(--muted);
       font-size: 13px;
     }
-    .bottom-nav {
-      display: none;
-    }
     @media (max-width: 900px) {
-      .app-header {
-        grid-template-columns: auto 1fr auto;
-        padding: 10px 14px;
-      }
-      .search { grid-column: 1 / -1; }
-      .header-actions .optional { display: none; }
-      .layout { grid-template-columns: 1fr; padding: 12px; }
-      .side-panel { display: none; }
-      .hero, .grid, .section-grid, .info-grid, .detail-grid, .kpi-grid { grid-template-columns: 1fr; }
-      .hero-copy { min-height: auto; padding: 24px; }
+      .grid, .section-grid, .info-grid, .detail-grid { grid-template-columns: 1fr; }
+      header, main, footer { padding-left: 16px; padding-right: 16px; }
       .card { min-height: auto; }
-      .bottom-nav {
-        position: sticky;
-        bottom: 0;
-        z-index: 18;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 6px;
-        padding: 8px;
-        background: rgba(255,255,255,.96);
-        border-top: 1px solid var(--line);
-        backdrop-filter: blur(12px);
-      }
-      .bottom-nav a {
-        display: grid;
-        place-items: center;
-        gap: 2px;
-        min-height: 50px;
-        color: var(--primary);
-        text-decoration: none;
-        font-size: 11px;
-        font-weight: 800;
-      }
     }
 </style>
 </head>
 <body>
-  <header class="app-header">
-    <a class="brand-mark" href="../../index.html" aria-label="Inicio Portal ZOIT">Z</a>
-    <div class="brand-title">
-      <strong>Sugerencias - Isla de Maipo</strong>
-      <span>ZOIT Isla de Maipo</span>
-    </div>
-    <label class="search" aria-label="Buscar en el geoportal">
-      <span class="material-symbols-outlined" aria-hidden="true">search</span>
-      <input type="search" placeholder="Buscar destino, atractivo, servicio o documento">
-    </label>
-    <nav class="header-actions" aria-label="Acciones rapidas">
-      
-      <a class="icon-button optional" href="#" aria-label="Compartir">
-        <span class="material-symbols-outlined" aria-hidden="true">share</span>
-      </a>
-      <a class="icon-button optional" href="#" aria-label="Pantalla completa">
-        <span class="material-symbols-outlined" aria-hidden="true">fullscreen</span>
-      </a>
-      <a class="icon-button optional" href="#configuracion" aria-label="Configuracion">
-        <span class="material-symbols-outlined" aria-hidden="true">settings</span>
-      </a>
-      <a class="icon-button" href="#ayuda" aria-label="Ayuda">
-        <span class="material-symbols-outlined" aria-hidden="true">help</span>
-      </a>
-
-    </nav>
+  <header>
+    <p class="eyebrow">ZOIT Isla de Maipo</p>
+    <h1>Sugerencias - Isla de Maipo</h1>
+    <p>Canal para recibir ideas, observaciones y propuestas ciudadanas.</p>
   </header>
-  <div class="layout">
-    <aside class="side-panel" aria-label="Categorias del geoportal">
-      <a href="../../index.html" aria-label="Destino">
-          <span class="material-symbols-outlined" aria-hidden="true">travel_explore</span>
-          <span>Destino</span>
-        </a>
-<a href="#atractivos" aria-label="Atractivos">
-          <span class="material-symbols-outlined" aria-hidden="true">landscape</span>
-          <span>Atractivos</span>
-        </a>
-<a href="#servicios" aria-label="Servicios">
-          <span class="material-symbols-outlined" aria-hidden="true">room_service</span>
-          <span>Servicios</span>
-        </a>
-<a href="#indicadores" aria-label="Infraestructura">
-          <span class="material-symbols-outlined" aria-hidden="true">hub</span>
-          <span>Infraestructura</span>
-        </a>
-<a href="#capas" aria-label="Capas">
-          <span class="material-symbols-outlined" aria-hidden="true">layers</span>
-          <span>Capas</span>
-        </a>
-<a href="#documentos" aria-label="Documentos">
-          <span class="material-symbols-outlined" aria-hidden="true">folder_open</span>
-          <span>Documentos</span>
-        </a>
-<a href="#indicadores" aria-label="Indicadores">
-          <span class="material-symbols-outlined" aria-hidden="true">monitoring</span>
-          <span>Indicadores</span>
-        </a>
-<a href="#configuracion" aria-label="Configuracion">
-          <span class="material-symbols-outlined" aria-hidden="true">settings</span>
-          <span>Configuracion</span>
-        </a>
-    </aside>
-    <main>
-      <section class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">ZOIT Isla de Maipo</p>
-          <h1>Sugerencias - Isla de Maipo</h1>
-          <p>Canal para recibir ideas, observaciones y propuestas ciudadanas.</p>
-          <div class="toolbar">
-            <a class="button primary" href="../../san-jose-de-maipo/index.html">Explorar destinos</a>
-            <a class="button" href="#indicadores">Ver indicadores</a>
-            <a class="button" href="#documentos">Documentos</a>
-          </div>
-        </div>
-        
-      <aside class="map-preview" aria-label="Vista cartografica referencial">
-        <div class="map-toolbar" aria-label="Herramientas del mapa">
-          <span class="map-control material-symbols-outlined" title="Mi ubicacion">my_location</span>
-          <span class="map-control material-symbols-outlined" title="Mapa base">map</span>
-          <span class="map-control material-symbols-outlined" title="Medicion">straighten</span>
-          <span class="map-control material-symbols-outlined" title="Compartir ubicacion">ios_share</span>
-        </div>
-        <div class="map-card">
-          <strong>Sugerencias - Isla de Maipo</strong>
-          <span>Area de exploracion territorial preparada para integrar capas, atractivos, servicios, indicadores y documentos.</span>
-        </div>
-      </aside>
-
-      </section>
-      
+  <main>
+    <nav class="toolbar">
+      <a class="button" href="../../index.html">Inicio</a>
+      <a class="button" href="../../san-jose-de-maipo/index.html">San Jose de Maipo</a>
+      <a class="button" href="../../pirque/index.html">Pirque</a>
+      <a class="button" href="../../isla-de-maipo/index.html">Isla de Maipo</a>
+    </nav>
+    
     <section class="panel empty">
-      <h2 class="icon-heading"><span class="material-symbols-outlined" aria-hidden="true">info</span>Sugerencias</h2>
+      <h2>Sugerencias</h2>
       <p>Canal para recibir ideas, observaciones y propuestas ciudadanas.</p>
       <p>Esta seccion esta preparada para incorporar informacion oficial, listados, documentos, formularios o tableros especificos del destino.</p>
     </section>
     <section class="panel">
-      <h2 class="icon-heading"><span class="material-symbols-outlined" aria-hidden="true">checklist</span>Contenido sugerido</h2>
+      <h2>Contenido sugerido</h2>
       <ul>
         <li>Responsables y fecha de ultima actualizacion.</li>
         <li>Documentos o enlaces oficiales asociados.</li>
         <li>Estado actual y proximos pasos.</li>
       </ul>
     </section>
-    <section class="panel" id="capas">
-      <h2 class="icon-heading"><span class="material-symbols-outlined" aria-hidden="true">layers</span>Capas y datos asociados</h2>
-      <p>Espacio preparado para agrupar informacion por Turismo, Naturaleza, Infraestructura, Seguridad, Patrimonio y Movilidad.</p>
-    </section>
-    <section class="panel" id="configuracion">
-      <h2 class="icon-heading"><span class="material-symbols-outlined" aria-hidden="true">settings</span>Configuracion</h2>
-      <p>Se mantiene compatibilidad con la estructura estatica actual y se deja preparada la integracion de formularios o visores especificos.</p>
-    </section>
-    <section class="panel" id="ayuda">
-      <h2 class="icon-heading"><span class="material-symbols-outlined" aria-hidden="true">help</span>Ayuda</h2>
-      <p>Vuelva al destino para navegar a otra seccion o al inicio para cambiar de ZOIT.</p>
-    </section>
 
-    </main>
-  </div>
+  </main>
   <footer>Portal de seguimiento ZOIT. Version inicial para publicacion web.</footer>
-  
-  <nav class="bottom-nav" aria-label="Navegacion movil">
-    <a href="../../index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span>Inicio</a>
-    <a href="#indicadores"><span class="material-symbols-outlined" aria-hidden="true">monitoring</span>Datos</a>
-    <a href="#capas"><span class="material-symbols-outlined" aria-hidden="true">layers</span>Capas</a>
-    <a href="#ayuda"><span class="material-symbols-outlined" aria-hidden="true">help</span>Ayuda</a>
-  </nav>
-
 </body>
 </html>
