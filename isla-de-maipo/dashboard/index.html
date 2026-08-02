@@ -3,208 +3,136 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard - Isla de Maipo</title>
+  <title>Dashboard Plan de Acción ZOIT Isla de Maipo</title>
   <style>
     :root {
-      --bg: #f4f6f1;
+      --bg: #f6f7f2;
       --ink: #17211b;
-      --muted: #63736a;
+      --muted: #5f6f66;
+      --line: #dbe1d8;
       --panel: #ffffff;
-      --line: #dce3da;
-      --green: #1f6f55;
-      --green-dark: #163b31;
-      --gold: #d6a64b;
-      --blue: #315f89;
+      --green: #2f7d5b;
     }
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--ink);
-      background: var(--bg);
-    }
-    header {
-      background: var(--green-dark);
-      color: #fff;
-      padding: 28px;
-      border-bottom: 5px solid var(--gold);
-    }
-    header a { color: #f7e1aa; text-decoration: none; }
-    .eyebrow {
-      margin: 0 0 8px;
-      color: #c8ddd3;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-    }
-    h1 {
-      margin: 0;
-      font-size: clamp(28px, 4vw, 46px);
-      line-height: 1.05;
-      letter-spacing: 0;
-    }
-    header p {
-      margin: 12px 0 0;
-      max-width: 900px;
-      color: #e4eee8;
-      line-height: 1.5;
-      font-size: 16px;
-    }
-    main {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 24px;
-    }
-    .toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 38px;
-      padding: 9px 13px;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      color: var(--ink);
-      background: #fff;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 14px;
-    }
-    .button.primary {
-      background: var(--green);
-      color: #fff;
-      border-color: var(--green);
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-    .section-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 14px;
-      align-items: start;
-    }
-    .detail-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-bottom: 16px;
-    }
-    .card {
-      display: block;
-      min-height: 190px;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 18px;
-      text-decoration: none;
-      color: var(--ink);
-    }
-    .card:hover {
-      border-color: #91aa9d;
-      box-shadow: 0 8px 24px rgba(22, 59, 49, .08);
-    }
-    .card h2, .card h3 {
-      margin: 0 0 10px;
-      font-size: 22px;
-      letter-spacing: 0;
-    }
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.45;
-    }
-    .pill {
-      display: inline-block;
-      margin-bottom: 16px;
-      padding: 5px 9px;
-      border-radius: 999px;
-      background: #e8f1ec;
-      color: #1c6047;
-      font-size: 12px;
-      font-weight: 700;
-    }
-    .panel {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 16px;
-    }
-    .panel h2 {
-      margin: 0 0 10px;
-      font-size: 22px;
-    }
-    .panel h3 {
-      margin: 0 0 8px;
-      font-size: 17px;
-    }
-    .panel p, li {
-      color: var(--muted);
-      line-height: 1.5;
-    }
-    .list {
-      margin: 8px 0 0;
-      padding-left: 18px;
-    }
-    .empty {
-      border-left: 4px solid var(--gold);
-    }
-    footer {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 24px 32px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-    @media (max-width: 900px) {
-      .grid, .section-grid, .info-grid, .detail-grid { grid-template-columns: 1fr; }
-      header, main, footer { padding-left: 16px; padding-right: 16px; }
-      .card { min-height: auto; }
-    }
-</style>
+    body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: var(--ink); background: var(--bg); }
+    header { padding: 24px 28px 18px; background: #18392f; color: white; border-bottom: 5px solid #d8a64a; }
+    h1 { margin: 0 0 8px; font-size: 28px; letter-spacing: 0; }
+    header p { margin: 0; color: #dce9df; max-width: 980px; line-height: 1.45; }
+    main { padding: 22px 28px 40px; max-width: 1500px; margin: 0 auto; }
+    .filters { display: grid; grid-template-columns: 2fr repeat(4, minmax(160px, 1fr)); gap: 10px; margin-bottom: 16px; }
+    input, select { width: 100%; min-height: 38px; border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; background: white; color: var(--ink); font-size: 14px; }
+    .kpis { display: grid; grid-template-columns: repeat(5, minmax(150px, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .kpi { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
+    .kpi .label { color: var(--muted); font-size: 12px; text-transform: uppercase; }
+    .kpi .value { font-size: 26px; font-weight: 700; margin-top: 6px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: start; }
+    section { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px; margin-bottom: 14px; }
+    h2 { font-size: 18px; margin: 0 0 14px; }
+    .bar-row { display: grid; grid-template-columns: minmax(130px, 230px) 1fr 70px; gap: 10px; align-items: center; margin: 9px 0; font-size: 14px; }
+    .bar-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .bar-track { background: #edf1ec; border-radius: 4px; height: 15px; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--green); }
+    .status-pill { display: inline-block; padding: 4px 8px; border-radius: 999px; background: #edf1ec; font-size: 12px; white-space: nowrap; }
+    .table-wrap { overflow: auto; max-height: 650px; border: 1px solid var(--line); border-radius: 6px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 1050px; }
+    th, td { padding: 9px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { position: sticky; top: 0; background: #eef3ed; z-index: 1; }
+    tr:hover td { background: #fafbf7; }
+    .note { color: var(--muted); font-size: 13px; margin-top: 8px; }
+    @media (max-width: 1000px) { .filters, .kpis, .grid { grid-template-columns: 1fr; } header, main { padding-left: 16px; padding-right: 16px; } }
+  </style>
 </head>
 <body>
   <header>
-    <p class="eyebrow">ZOIT Isla de Maipo</p>
-    <h1>Dashboard - Isla de Maipo</h1>
-    <p>Panel de monitoreo preparado para cargar acciones, indicadores, estados y responsables.</p>
+    <h1>Dashboard Plan de Acción ZOIT Isla de Maipo</h1>
+    <p>Monitoreo construido desde el plan de acción <strong>plan-de-accion-zoit-idm.pdf</strong>. Los datos base provienen de la matriz del PDF y quedan listos para seguimiento operativo, verificadores y actualización de avance.</p>
   </header>
   <main>
-    <nav class="toolbar">
-      <a class="button" href="../../index.html">Inicio</a>
-      <a class="button" href="../../san-jose-de-maipo/index.html">San Jose de Maipo</a>
-      <a class="button" href="../../pirque/index.html">Pirque</a>
-      <a class="button" href="../../isla-de-maipo/index.html">Isla de Maipo</a>
-    </nav>
-    
-    <section class="panel empty">
-      <h2>Dashboard</h2>
-      <p>Panel de monitoreo preparado para cargar acciones, indicadores, estados y responsables.</p>
-      <p>Esta seccion esta preparada para incorporar informacion oficial, listados, documentos, formularios o tableros especificos del destino.</p>
+    <div class="filters">
+      <input id="search" type="search" placeholder="Buscar acción, indicador, ejecutor u observación">
+      <select id="lineFilter"><option value="">Todas las líneas</option></select>
+      <select id="statusFilter"><option value="">Todos los estados</option></select>
+      <select id="yearFilter"><option value="">Todos los años</option></select>
+      <select id="executorFilter"><option value="">Todos los ejecutores</option></select>
+    </div>
+    <div class="kpis" id="kpis"></div>
+    <div class="grid">
+      <section><h2>Acciones por estado</h2><div id="statusChart"></div></section>
+      <section><h2>Acciones por línea</h2><div id="lineChart"></div></section>
+      <section><h2>Programación por año</h2><div id="yearChart"></div></section>
+      <section><h2>Presupuesto por línea</h2><div id="budgetChart"></div></section>
+    </div>
+    <section>
+      <h2>Tabla de acciones</h2>
+      <div class="table-wrap" id="table"></div>
+      <div class="note">Nota: estos dashboards usan la planificación del PDF. Para monitoreo público fino conviene agregar % avance, fecha de actualización y links a evidencias.</div>
     </section>
-    <section class="panel">
-      <h2>Contenido sugerido</h2>
-      <ul>
-        <li>Responsables y fecha de ultima actualizacion.</li>
-        <li>Documentos o enlaces oficiales asociados.</li>
-        <li>Estado actual y proximos pasos.</li>
-      </ul>
-    </section>
-
   </main>
-  <footer>Portal de seguimiento ZOIT. Version inicial para publicacion web.</footer>
+  <script>
+    const DATA = [{"id": 1, "action": "Identificar y señalizar localidades de la comuna mediante la implementación de señalética turística.", "line": "Equipamiento e infraestructura", "objective": "Fortalecer, ampliar y formalizar la infraestructura y el equipamiento turístico y público, con el fin de mejorar la experiencia y seguridad tanto de los visitantes como de la comunidad local.", "gap": "Insuficiencia de infraestructura básica y servicios públicos esenciales, como estacionamient os, iluminación, baños y sistemas de alcantarillado.", "indicator": "Nº de localidades señalizadas con estándares turísticos", "goal": "4 localidades señalizadas", "verifier": "Informe técnico con georreferenciació n + registro fotográfico", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 2"], "startQ": null, "endQ": null, "executors": ["Municipalidad de Isla de Maipo SECPLA"], "allExecutors": "Municipalidad de Isla de Maipo SECPLA", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 2, "action": "Ejecutar un programa de reposición e instalación de alumbrado público en sectores turísticos clave.", "line": "Equipamiento e infraestructura", "objective": "", "gap": "", "indicator": "Nº de luminarias instaladas o repuestas", "goal": "XX luminarias en las 4 UT", "verifier": "Acta de recepción municipal + listado de puntos con coordenadas", "budget": 2600000000.0, "budgetLabel": "2.600.000.000", "funding": "FNDR - Transantiago - GORE", "years": ["Año 4"], "startQ": null, "endQ": null, "executors": ["Municipalidad de Isla de Maipo / Gobierno Regional"], "allExecutors": "Municipalidad de Isla de Maipo / Gobierno Regional", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Largo plazo"}, {"id": 3, "action": "Diseño de una obra detonante en el marco del Programa de Pequeñas Localidades.", "line": "Equipamiento e infraestructura", "objective": "", "gap": "", "indicator": "Obra ejecutada con financiamiento adjudicado", "goal": "1 obra detonante ejecutada", "verifier": "Certificado de término de obra + resolución de financiamiento MPL", "budget": 80000000.0, "budgetLabel": "80.000.000", "funding": "Serviu", "years": ["Año 3"], "startQ": null, "endQ": null, "executors": ["Municipalidad Isla de Maipo / Minvu"], "allExecutors": "Municipalidad Isla de Maipo / Minvu", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 4, "action": "Ejecución o construcción la Plaza de la Promesa en Puntilla de Lonquén como espacio público de valor turístico.", "line": "Equipamiento e infraestructura", "objective": "", "gap": "", "indicator": "% de avance del proyecto de habilitación", "goal": "100% del diseño y habilitación ejecutado", "verifier": "Plano de proyecto aprobado + acta de recepción", "budget": 185307000.0, "budgetLabel": "185.307.000", "funding": "GORE FRIL", "years": ["Año 2"], "startQ": null, "endQ": null, "executors": ["Municipalidad SECPLA"], "allExecutors": "Municipalidad SECPLA", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 5, "action": "Impulsar el Plan de Desarrollo Local (PPL) con énfasis en infraestructura turística.", "line": "Equipamiento e infraestructura", "objective": "", "gap": "", "indicator": "Nº de iniciativas de infraestructura turística ejecutadas del PPL", "goal": "3 iniciativas implementadas", "verifier": "Informe de ejecución PPL + fichas técnicas", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 4"], "startQ": null, "endQ": null, "executors": ["Minvu, Equipo PPL, Turismo"], "allExecutors": "Minvu, Equipo PPL, Turismo", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Largo plazo"}, {"id": 6, "action": "Accion 6 segun matriz PDF", "line": "Equipamiento e infraestructura", "objective": "", "gap": "", "indicator": "", "goal": "", "verifier": "", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": [], "startQ": null, "endQ": null, "executors": ["Minvu, Equipo PPL, Turismo"], "allExecutors": "Minvu, Equipo PPL, Turismo", "observation": "Fila no extraida de forma completa desde el PDF; requiere revision manual del plan de accion.", "status": "Requiere revision"}, {"id": 7, "action": "Adaptar la Biblioteca Pública 196 de Isla de Maipo para garantizar acceso universal.", "line": "Equipamiento e infraestructura", "objective": "", "gap": "", "indicator": "% de avance en accesibilidad universal", "goal": "100% de accesibilidad universal implementada", "verifier": "Informe de accesibilidad + certificación SEC o SERVIU", "budget": 0.0, "budgetLabel": "PMI Cultura", "funding": "SUBDERE, GORE RM", "years": ["Año 3"], "startQ": null, "endQ": null, "executors": ["Municipalidad SECPLA"], "allExecutors": "Municipalidad SECPLA", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 8, "action": "Construcción anteproyecto del Centro Cultural Inalmew como espacio patrimonial y turístico.", "line": "Equipamiento e infraestructura", "objective": "", "gap": "", "indicator": "Anteproyecto elaborado y validado técnicamente", "goal": "1 anteproyecto entregado", "verifier": "Carpeta técnica con planos, presupuesto y ficha FNDR", "budget": 4000000.0, "budgetLabel": "4.000.000", "funding": "GORE / FNDR", "years": ["Año 1"], "startQ": null, "endQ": null, "executors": ["Municipalidad SECPLA"], "allExecutors": "Municipalidad SECPLA", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Corto plazo"}, {"id": 9, "action": "Construcción de baños públicos en el Casco Histórico para el uso de turistas y comunidad.", "line": "Equipamiento e infraestructura", "objective": "", "gap": "", "indicator": "Nº de baños públicos instalados y operativos", "goal": "2 módulos sanitarios habilitados", "verifier": "Acta de recepción municipal + fotografías de obra", "budget": 181774000.0, "budgetLabel": "181.774.000", "funding": "SUBDERE PMU / GORE FRIL", "years": ["Año 1"], "startQ": null, "endQ": null, "executors": ["Municipalidad SECPLA"], "allExecutors": "Municipalidad SECPLA", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Corto plazo"}, {"id": 10, "action": "Gestionar construcción e instalación de letreros o tótems de bienvenida en los principales accesos a la comuna.", "line": "Equipamiento e infraestructura", "objective": "", "gap": "Señalética turística y vial limitada, con información incompleta, desactualizada o poco visible.", "indicator": "Nº de letreros o tótems instalados", "goal": "4 accesos con señalética de bienvenida", "verifier": "Registro fotográfico + coordenadas de instalación", "budget": 194000000.0, "budgetLabel": "194.000.000", "funding": "SUBDERE PMU / GORE FRIL", "years": ["Año 1"], "startQ": null, "endQ": null, "executors": ["Municipalidad SECPLA"], "allExecutors": "Municipalidad SECPLA", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Corto plazo"}, {"id": 11, "action": "Reponer y mejorar la señalética vial y peatonal con información turística clara y visible.", "line": "Equipamiento e infraestructura", "objective": "", "gap": "", "indicator": "Nº de señales viales y peatonales mejoradas o instaladas", "goal": "15 señales nuevas o mejoradas", "verifier": "Informe técnico + ficha de diseño + geolocalización", "budget": 30000000.0, "budgetLabel": "30.000.000", "funding": "GORE", "years": ["Año 2"], "startQ": null, "endQ": null, "executors": ["Municipalidad SECPLA"], "allExecutors": "Municipalidad SECPLA", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 12, "action": "Construir una senda multipropósito en el sector de Villa", "line": "Equipamiento e infraestructura", "objective": "Mejorar la movilidad y", "gap": "Conectividad y accesibilidad restringidas por", "indicator": "Metros lineales de senda construida", "goal": "X metros de senda multipropósito", "verifier": "Acta de entrega + plano de obra ejecutada", "budget": 50000000.0, "budgetLabel": "50.000.000", "funding": "GORE RM, SUBDERE, Red Latam. T. Deportivo, Privados", "years": ["Año 2"], "startQ": null, "endQ": null, "executors": ["Municipalidad / GORE RM, SUBDERE, Red"], "allExecutors": "Municipalidad / GORE RM, SUBDERE, Red", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 13, "action": "Instalar bicicleteros en puntos estratégicos y servicios turísticos de la comuna.", "line": "Equipamiento e infraestructura", "objective": "", "gap": "", "indicator": "Nº de bicicleteros instalados", "goal": "10 bicicleteros instalados en servicios turísticos y espacios públicos", "verifier": "Registro fotográfico + ubicación georreferenciada", "budget": 300000000.0, "budgetLabel": "300.000.000", "funding": "GORE RM, SUBDERE, Red Latam. T. Deportivo, Privados", "years": ["Año 1"], "startQ": null, "endQ": null, "executors": ["Municipalidad / GORE RM, SUBDERE, Red Latam. T. Deportivo, Privados"], "allExecutors": "Municipalidad / GORE RM, SUBDERE, Red Latam. T. Deportivo, Privados", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Corto plazo"}, {"id": 14, "action": "Diseñar el proyecto de una ruta ciclística con enfoque deportivo y turístico post Panamericanos.", "line": "Equipamiento e infraestructura", "objective": "", "gap": "", "indicator": "Proyecto de ruta ciclística diseñado y aprobado", "goal": "1 diseño entregado y gestionado para postulación", "verifier": "Carpeta de diseño técnico + carta de intención o postulación", "budget": 150000000.0, "budgetLabel": "150.000.000", "funding": "GORE RM, SUBDERE, Privados, otros", "years": ["Año 2"], "startQ": null, "endQ": null, "executors": ["Municipalidad / GORE RM, SUBDERE, Privados, otros"], "allExecutors": "Municipalidad / GORE RM, SUBDERE, Privados, otros", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 15, "action": "Impulsar el posicionamiento de la Marca Turística “Isla de Maipo” como destino enoturístico, rural y patrimonial de referencia regional.", "line": "Promoción", "objective": "Visibilidad y posicionamiento limitados del destino en los mercados objetivo.", "gap": "", "indicator": "Campañas de posicionamiento ejecutadas con imagen de marca validada", "goal": "1 campaña anual con material gráfico y audiovisual difundido", "verifier": "Registro de campaña, piezas gráficas, métricas en RRSS y sitio web", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 4"], "startQ": null, "endQ": null, "executors": ["Municipalidad de Isla de Maipo"], "allExecutors": "Municipalidad de Isla de Maipo", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Largo plazo"}, {"id": 16, "action": "Reactivar y consolidar la Fiesta del Paisaje como evento de identidad local y promoción turística.", "line": "Promoción", "objective": "", "gap": "", "indicator": "Nº de versiones realizadas con participación turística", "goal": "1 versión anual con al menos 30 emprendimientos turísticos", "verifier": "Programa oficial del evento + listado de participantes + difusión en medios", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 3"], "startQ": null, "endQ": null, "executors": ["Municipalidad de Isla de Maipo"], "allExecutors": "Municipalidad de Isla de Maipo", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 17, "action": "Diseñar e implementar el “Hito 0” de los Juegos Panamericanos como espacio simbólico de proyección territorial y turística.", "line": "Promoción", "objective": "", "gap": "", "indicator": "Proyecto diseñado e implementado", "goal": "1 hito turístico instalado e inaugurado", "verifier": "Planos de diseño, acta de instalación, registro fotográfico", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 2"], "startQ": null, "endQ": null, "executors": ["Municipalidad de Isla de Maipo"], "allExecutors": "Municipalidad de Isla de Maipo", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 18, "action": "Promover y visibilizar a los emprendedores turísticos en la web municipal y canales oficiales de difusión.", "line": "Promoción", "objective": "Débil coordinación y articulación entre actores públicos y privados para desarrollar", "gap": "", "indicator": "Nº de emprendimientos turísticos visibilizados en canales oficiales", "goal": "50 emprendimientos publicados en la web y redes sociales municipales", "verifier": "Captura de pantalla de publicaciones + listado de emprendimientos visibilizados", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 2"], "startQ": null, "endQ": null, "executors": ["Municipalidad de Isla de Maipo"], "allExecutors": "Municipalidad de Isla de Maipo", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 19, "action": "Gestionar la promoción del destino Isla de Maipo a través de la Oficina de Información Turística (OIT) del Gobierno Regional Metropolitano. *", "line": "Promoción", "objective": "Incrementar la visibilidad del destino en múltiples canales y fortalecer la articulación de la oferta turística para mejorar su alcance y competitividad.", "gap": "Limitada articulación entre los servicios turísticos y escasa promoción cruzada de la oferta.", "indicator": "Nº de acciones de promoción ejecutadas a través de la OIT", "goal": "4 acciones de promoción anuales a través de la OIT", "verifier": "Informes de actividad de la OIT + registro fotográfico + medios de difusión", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 3"], "startQ": null, "endQ": null, "executors": ["Unidad de Turismo / Administración Municipal"], "allExecutors": "Unidad de Turismo / Administración Municipal", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 20, "action": "Instalar letras volumétricas representativas en puntos de alto flujo como recurso fotográfico y de identidad visual del destino.", "line": "Promoción", "objective": "", "gap": "", "indicator": "Nº de letras volumétricas instaladas en puntos estratégicos", "goal": "2 instalaciones con identidad visual y uso turístico", "verifier": "Registro fotográfico, plano de ubicación y acta de instalación", "budget": 0.0, "budgetLabel": "S/P", "funding": "GORE FRIL / PMU SUBDERE", "years": ["Año 1"], "startQ": null, "endQ": null, "executors": ["Municipalidad SECPLA"], "allExecutors": "Municipalidad SECPLA", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Corto plazo"}, {"id": 21, "action": "Diseñar e instalar mapas turísticos comunales en cuatro puntos estratégicos de alta circulación de visitantes.", "line": "Promoción", "objective": "", "gap": "", "indicator": "Nº de mapas turísticos instalados", "goal": "4 mapas con diseño validado y contenido actualizado", "verifier": "Registro fotográfico, ficha técnica y ubicación georreferenciada", "budget": 0.0, "budgetLabel": "S/P", "funding": "GORE FRIL / PMU SUBDERE", "years": ["Año 2"], "startQ": null, "endQ": null, "executors": ["Municipalidad SECPLA"], "allExecutors": "Municipalidad SECPLA", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 22, "action": "Centro de Educación Ambiental Inclusivo", "line": "Sustentabilidad", "objective": "Consolidar buenas prácticas ambientales y sociales en la operación turística, resguardando la integridad del humedal y la ruralidad del territorio.", "gap": "Cultura y prácticas de gestión ambiental y social limitadas en los servicios turísticos y la comunidad local.", "indicator": "Centro construido y habilitado al 100% al cuarto año", "goal": "Acta de recepción municipal de obras y registro fotográfico oficial", "verifier": "Listados de asistencia y fotografías.", "budget": 22000000.0, "budgetLabel": "$22.000.000", "funding": "Privados, Municipalidad", "years": ["Año 4"], "startQ": null, "endQ": null, "executors": ["Dgmao- Unidad de Medio Ambiente/ Comunicaciones/Corporación de Educación/ Dideco - Oficina de Discapacidad e inclusión/ Dirección de Seguridad Pública."], "allExecutors": "Dgmao- Unidad de Medio Ambiente/ Comunicaciones/Corporación de Educación/ Dideco - Oficina de Discapacidad e inclusión/ Dirección de Seguridad Pública.", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Largo plazo"}, {"id": 23, "action": "Vivero Municipal Productor de Especies Vegetales Nativas", "line": "Sustentabilidad", "objective": "Promover la sensibilización de visitantes y comunidad en turismo responsable y de bajo impacto ambiental.", "gap": "Escaso nivel de conciencia turística y ambiental.", "indicator": "Cantidad de especies nativas producidas anualmente", "goal": "Informes de producción del vivero", "verifier": "Informe de producción", "budget": 30000000.0, "budgetLabel": "$30.000.000", "funding": "CONAF/Privados/Municipalidad.", "years": ["Año 3"], "startQ": null, "endQ": null, "executors": ["DGMAO- Unidad de Medio Ambiente /SECPLA/DIDECO/Prodesal"], "allExecutors": "DGMAO- Unidad de Medio Ambiente /SECPLA/DIDECO/Prodesal", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 24, "action": "Sistema de Reutilización de Señalización Vial de Isla de Maipo", "line": "Sustentabilidad", "objective": "Consolidar buenas prácticas ambientales y sociales en la operación turística, resguardando la integridad del humedal y la ruralidad del territorio.", "gap": "Manejo inadecuado de residuos y carencia de infraestructura para el reciclaje.", "indicator": "Reducción de señalización enviada a disposición final / Cantidad de señaléticas reutilizadas por año", "goal": "Reutilizar al menos 20 señaléticas anualmente", "verifier": "Catastro de señalética actual en bodega municipal para reutilización", "budget": 12000000.0, "budgetLabel": "$12.000.000", "funding": "MMA/GORE RM/Municipalidad.", "years": [], "startQ": null, "endQ": null, "executors": ["Dirección de Transito / DOM / DGMAO- Unidad de Medio Ambiente/ Dideco/Comunicaciones"], "allExecutors": "Dirección de Transito / DOM / DGMAO- Unidad de Medio Ambiente/ Dideco/Comunicaciones", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Por programar"}, {"id": 25, "action": "Apoyar la gestión de la construcción del Plan Maestro de Manejo para el Humedal Urbano del Río Maipo", "line": "Sustentabilidad", "objective": "Consolidar buenas prácticas ambientales y sociales en la operación turística, resguardando la integridad del humedal y la ruralidad del territorio.", "gap": "Riesgo de degradación de ecosistemas sensibles (humedal y ribera del Río Maipo) debido a un uso turístico no regulado", "indicator": "Elaboración del documento y actividades de educación ambiental realizadas en el humedal.", "goal": "Plan Maestro validado y al menos 5 actividades de educación ambiental ejecutadas antes de 2032.", "verifier": "Fotografías y listados de asistencia.", "budget": 200000000.0, "budgetLabel": "200.000.000", "funding": "GORE RM/ MMA/ Privados/ Municipalidad.", "years": [], "startQ": null, "endQ": null, "executors": ["SECPLA / DGMAO"], "allExecutors": "SECPLA / DGMAO", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Por programar"}, {"id": 26, "action": "Plan de manejo de Arbolado Urbano", "line": "Sustentabilidad", "objective": "Promover la sensibilización de visitantes y comunidad en turismo responsable y de bajo impacto ambiental.", "gap": "Escaso nivel de conciencia turística y ambiental", "indicator": "Catastro de arbolado urbano y propuesta de manejo", "goal": "Catastro completo del arbolado y 1 plan de manejo implementado antes de 2029.", "verifier": "Documento de catastro y propuesta de manejo", "budget": 380000000.0, "budgetLabel": "$380.000.000", "funding": "MMA/ SUBDERE/ Gore RM/ Conaf/Privados/Universidades/ Municipalidad.", "years": [], "startQ": null, "endQ": null, "executors": ["DGMAO – Unidad de Medio Ambiente /SECPLA."], "allExecutors": "DGMAO – Unidad de Medio Ambiente /SECPLA.", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Por programar"}, {"id": 27, "action": "Electromovilidad en transporte público para Isla de Maipo", "line": "Sustentabilidad", "objective": "", "gap": "", "indicator": "N° buses eléctricos funcionando en la comuna", "goal": "5 buses eléctricos en funcionamiento con recorridos establecidos antes de 2032", "verifier": "Fotografías y programación de recorridos", "budget": 600000000.0, "budgetLabel": "$600.000.000", "funding": "GORE RM / Municipalidad", "years": [], "startQ": null, "endQ": null, "executors": ["SECPLA / DGMAO – Unidad de Medio Ambiente/ Dirección de Tránsito /Comunicaciones/ Dideco/ Obras"], "allExecutors": "SECPLA / DGMAO – Unidad de Medio Ambiente/ Dirección de Tránsito /Comunicaciones/ Dideco/ Obras", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Por programar"}, {"id": 28, "action": "Diseñar e implementar un recorrido autoguiado por el Casco Histórico de Isla de Maipo, con enfoque patrimonial e interpretativo.", "line": "Desarrollo de productos", "objective": "Diversificar y articular productos en torno al vino, el patrimonio y la naturaleza, para generar experiencias turísticas de alto valor y atractivo.", "gap": "Oferta turística fragmentada y con baja diferenciación", "indicator": "Nº de recorridos diseñados y habilitados", "goal": "1 recorrido implementado con señalética y material interpretativo", "verifier": "Guía digital o física, señalética instalada, georreferenciación y registro fotográfico", "budget": 100000.0, "budgetLabel": "100.000", "funding": "Municipalidad Isla de Maipo", "years": ["Año 2"], "startQ": null, "endQ": null, "executors": ["Turismo Isla de Maipo"], "allExecutors": "Turismo Isla de Maipo", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 29, "action": "“Catastro Patrimonio Cultural de Isla de Maipo”. Registrar, sistematizar y catastrar el patrimonio cultural material e inmaterial.", "line": "Desarrollo de productos", "objective": "", "gap": "", "indicator": "Creación de catastro patrimonial material: sí/no Creación de catastro patrimonial inmaterial: sí/no", "goal": "Archivo Excel con Catastro de patrimonio cultural material. Archivo Excel Catastro de patrimonio cultural inmaterial Documento de sistematización y registro. Registro fotográfico", "verifier": "Documento del catastro, fichas patrimoniales, acta de validación comunal", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 2"], "startQ": null, "endQ": null, "executors": ["Cultura y Turismo IDM"], "allExecutors": "Cultura y Turismo IDM", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 30, "action": "Actualizar el Plan de Desarrollo Turístico Comunal (PLADETUR) incorporando enfoques de sostenibilidad, innovación y articulación de experiencias.", "line": "Desarrollo de productos", "objective": "", "gap": "", "indicator": "PLADETUR actualizado y aprobado", "goal": "1 PLADETUR con actualización vigente y participativa", "verifier": "Versión final del PLADETUR + acta de aprobación municipal", "budget": 10000000.0, "budgetLabel": "10.000.000", "funding": "GORE, Privados, Subsecretaría de Turismo, Municipalidad Isla de Maipo", "years": ["Año 2"], "startQ": null, "endQ": null, "executors": ["Municipalidad Isla de Maipo, Turismo, Fomento, MMAA, Cultura, Seguridad Pública, DOM, SECPLA, Jurídico, Rentas"], "allExecutors": "Municipalidad Isla de Maipo, Turismo, Fomento, MMAA, Cultura, Seguridad Pública, DOM, SECPLA, Jurídico, Rentas", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 31, "action": "Plan de Turismo Sustentable", "line": "Desarrollo de productos", "objective": "", "gap": "Escasa innovación y limitado uso de tecnologías para", "indicator": "Número de operadores turísticos capacitados en", "goal": "Publicación del Plan de Turismo Sustentable", "verifier": "Fotografías, listados de asistencias o certificados /", "budget": 80000000.0, "budgetLabel": "$80.000.000", "funding": "GORE RM / SERNATUR / MMA/Privados / Municipalidad.", "years": ["Año 3"], "startQ": null, "endQ": null, "executors": ["Unidad de Turismo /DGMAO -- Unidad de"], "allExecutors": "Unidad de Turismo /DGMAO -- Unidad de", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 32, "action": "Promover la concientización sobre la implementación de Espacios Azules en servicios turísticos para mejorar el bienestar y la experiencia del visitante.", "line": "Desarrollo de productos", "objective": "", "gap": "", "indicator": "Nº de servicios turísticos adheridos al concepto de Espacios Azules", "goal": "10 servicios turísticos incorporan prácticas de bienestar y entorno saludable", "verifier": "Declaración de compromiso, visitas técnicas, registros fotográficos", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 2"], "startQ": null, "endQ": null, "executors": ["Rancho La Esperanza / Municipalidad de Isla de Maipo, Inclusión, Privados, Academia"], "allExecutors": "Rancho La Esperanza / Municipalidad de Isla de Maipo, Inclusión, Privados, Academia", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 33, "action": "Gestionar e implementar un programa de actividades deportivas- recreativas masivas con enfoque turístico y comunitario.", "line": "Desarrollo de productos", "objective": "", "gap": "Débil asociatividad entre actores para el diseño de rutas y paquetes integrados.", "indicator": "Nº de actividades deportivas- recreativas realizadas", "goal": "3 actividades anuales con participación comunitaria y turística", "verifier": "Programación oficial, material de difusión, reportes post-evento", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 3"], "startQ": null, "endQ": null, "executors": ["Municipalidad Isla de Maipo / Deportes, Corporación de Educación, IND, Red Latam T. Deportivo, Privados, Sernatur"], "allExecutors": "Municipalidad Isla de Maipo / Deportes, Corporación de Educación, IND, Red Latam T. Deportivo, Privados, Sernatur", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 34, "action": "Realizar un estudio jurídico para el uso turístico del borde río, asegurando la compatibilidad normativa y ambiental.", "line": "Desarrollo de productos", "objective": "Reactivar y fortalecer los gremios y organizaciones turísticas como plataformas de gobernanza y comercialización.", "gap": "Organizaciones inactivas o con limitada capacidad para la gestión de proyectos y acciones colaborativas", "indicator": "Estudio jurídico elaborado", "goal": "1 estudio técnico-jurídico entregado", "verifier": "Informe jurídico, recomendaciones, presentación en sesión comunal o gobernanza", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 1"], "startQ": null, "endQ": null, "executors": ["Seremi de Bienes Nacionales y DOH"], "allExecutors": "Seremi de Bienes Nacionales y DOH", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Corto plazo"}, {"id": 35, "action": "Gestionar y ejecutar procesos de capacitación en temáticas de patrimonio local, dirigidas a actores turísticos y comunidad.", "line": "Capital humano", "objective": "Profesionali zar el talento local y elevar la calidad del servicio turístico, con un enfoque en seguridad e inclusión.", "gap": "Capacidade s y competenci as laborales insuficiente s a lo largo de la cadena de valor turística.", "indicator": "Nº de personas capacitada s", "goal": "50 personas capacitadas en 2 talleres", "verifier": "Listado de participantes, programa de capacitación, acta de ejecución", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 2"], "startQ": null, "endQ": null, "executors": ["SIGPA / Sernatur, Seremi Cultura, Municipalidad, Corporación Cultura IDM"], "allExecutors": "SIGPA / Sernatur, Seremi Cultura, Municipalidad, Corporación Cultura IDM", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 36, "action": "Participar en congresos y encuentros turísticos para la actualización de conocimientos y fortalecimiento de redes.", "line": "Capital humano", "objective": "", "gap": "", "indicator": "Nº de encuentro s o congresos con participaci ón comunal", "goal": "Participación en al menos 2 instancias anuales", "verifier": "Certificados de participación, registro fotográfico, bitácora de aprendizajes", "budget": 10000000.0, "budgetLabel": "10.000.000", "funding": "GORE RM, Municipalidad, Privados", "years": ["Año 2"], "startQ": null, "endQ": null, "executors": ["Municipalidad, Sernatur, Subsecretaría de Turismo / Gore RM, Seremi de Economía, Privados, Academias, otros"], "allExecutors": "Municipalidad, Sernatur, Subsecretaría de Turismo / Gore RM, Seremi de Economía, Privados, Academias, otros", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 37, "action": "Coordinar instancias formativas sobre normativa de uso de suelo y criterios para el desarrollo de campings.", "line": "Capital humano", "objective": "", "gap": "", "indicator": "Nº de capacitaci ones realizadas", "goal": "2 jornadas de formación con participación de emprendedores", "verifier": "Programa de jornada, listado de asistencia, material de apoyo", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 1"], "startQ": null, "endQ": null, "executors": ["Seremi Agricultura"], "allExecutors": "Seremi Agricultura", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Corto plazo"}, {"id": 38, "action": "Capacitar a funcionarios municipales en formulación de proyectos y postulación a fondos FPA.", "line": "Capital humano", "objective": "", "gap": "", "indicator": "Nº de funcionari os capacitad os", "goal": "10 funcionarios capacitados en una capacitación FPA", "verifier": "Certificados, programa de curso, lista de asistencia", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 1"], "startQ": null, "endQ": null, "executors": ["Seremi MMAA, Unidad Medioambiente, Organizaciones Comunitarias"], "allExecutors": "Seremi MMAA, Unidad Medioambiente, Organizaciones Comunitarias", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Corto plazo"}, {"id": 39, "action": "Impulsar y formalizar la asociatividad de guías de turismo de la comuna, promoviendo su registro y profesionalización.", "line": "Capital humano", "objective": "", "gap": "Gobernanz a sectorial débil y baja participació n de la comunidad.", "indicator": "Nº de guías organizad os y registrado s", "goal": "1 agrupación conformada y 10 guías registrados en SERNATUR", "verifier": "Registro de guías, acta de constitución, ficha SERNATUR", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 2"], "startQ": null, "endQ": null, "executors": ["Privados, Municipalidad / Sernatur, Privados, Otras organizaciones"], "allExecutors": "Privados, Municipalidad / Sernatur, Privados, Otras organizaciones", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 40, "action": "Fomentar la conformación de una red de mujeres vinculadas al turismo, con enfoque de género y empoderamiento.", "line": "Capital humano", "objective": "", "gap": "", "indicator": "Red conforma da y en funcionam iento", "goal": "1 red activa con al menos 15 integrantes", "verifier": "Acta de constitución, listado de integrantes, plan de actividades", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 2"], "startQ": null, "endQ": null, "executors": ["Privados, Municipalidad / Casa de la Mujer, Sernatur, Prodemu, Sercotec, Corfo, Fosis"], "allExecutors": "Privados, Municipalidad / Casa de la Mujer, Sernatur, Prodemu, Sercotec, Corfo, Fosis", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 41, "action": "Consolidar la asociatividad de viñateros para fortalecer", "line": "Capital humano", "objective": "", "gap": "", "indicator": "Nº de viñateros", "goal": "1 agrupación con 5 o más viñas", "verifier": "Acta de reunión de conformación,", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 3"], "startQ": null, "endQ": null, "executors": ["Municipalidad, Viñateros de Isla de"], "allExecutors": "Municipalidad, Viñateros de Isla de", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 42, "action": "Establecer una Mesa de Turismo Técnico-Consultiva Comunal con representación de diversos actores públicos y privados.", "line": "Capital humano", "objective": "", "gap": "", "indicator": "Mesa técnica conforma da y operativa", "goal": "1 mesa técnico- consultiva con al menos 3 sesiones anuales", "verifier": "Actas de reuniones, listado de participantes, convocatoria formal", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 3"], "startQ": null, "endQ": null, "executors": ["Municipalidad / Privados, Sernatur"], "allExecutors": "Municipalidad / Privados, Sernatur", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 43, "action": "Organizar Fam Tours entre prestadores de servicios turísticos locales para fomentar la articulación de la oferta y el conocimiento mutuo.", "line": "Capital humano", "objective": "", "gap": "", "indicator": "Nº de Fam Tours realizados", "goal": "2 Fam Tours comunales organizados anualmente", "verifier": "Programa de actividades, registro de asistentes, evaluación post- actividad", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 3"], "startQ": null, "endQ": null, "executors": ["Municipalidad / Privados"], "allExecutors": "Municipalidad / Privados", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 44, "action": "Levantamiento de Información para el Emprendimiento Local", "line": "Capital humano", "objective": "", "gap": "", "indicator": "Catastro de emprendi mientos elaborado", "goal": "1 catastro actualizado con al menos 50 emprendimientos turísticos", "verifier": "Base de datos, ficha de caracterización, documento de análisis", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 2"], "startQ": null, "endQ": null, "executors": ["Municipalidad de Isla de Maipo / Sercotec, Fosis, Corfo, Sence, Sercotec, PRODEMU, Privados"], "allExecutors": "Municipalidad de Isla de Maipo / Sercotec, Fosis, Corfo, Sence, Sercotec, PRODEMU, Privados", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 45, "action": "Gestionar con la Seremi de Salud un canal único de contrapartes técnicas para facilitar los procesos de resolución sanitaria.", "line": "Capital humano", "objective": "", "gap": "", "indicator": "Canal de coordinaci ón establecid o", "goal": "1 canal de contacto definido y operativo", "verifier": "Oficio de acuerdo, correo institucional oficializado, circular de funcionamiento", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 1"], "startQ": null, "endQ": null, "executors": ["Seremi de Salud"], "allExecutors": "Seremi de Salud", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Corto plazo"}, {"id": 46, "action": "Impulsar la reactivación de la Cámara de Comercio y Turismo de Isla de Maipo como plataforma de articulación y representación gremial.", "line": "Capital humano", "objective": "", "gap": "", "indicator": "Cámara reactivada y con plan de acción", "goal": "1 directiva activa y ejecución de al menos 3 actividades anuales", "verifier": "Acta de constitución, registro legal, plan de trabajo anual", "budget": 0.0, "budgetLabel": "S/P", "funding": "Sercotec, GORE RM", "years": ["Año 3"], "startQ": null, "endQ": null, "executors": ["Municipalidad, Privados / Seremi de Economía"], "allExecutors": "Municipalidad, Privados / Seremi de Economía", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}, {"id": 47, "action": "Coordinar una mesa técnica entre los sectores de agricultura y salud para resolver problemáticas sanitarias en zonas rurales con vocación turística.", "line": "Capital humano", "objective": "", "gap": "", "indicator": "Mesa técnica intersecto rial conforma da", "goal": "1 mesa operativa con reuniones semestrales y plan de acción", "verifier": "Actas de sesiones, listado de participantes, acuerdos firmados", "budget": 0.0, "budgetLabel": "S/P", "funding": "SFF", "years": ["Año 2"], "startQ": null, "endQ": null, "executors": ["Municipalidad Isla de Maipo / Seremi Agricultura, Seremi Salud"], "allExecutors": "Municipalidad Isla de Maipo / Seremi Agricultura, Seremi Salud", "observation": "Registro cargado desde el Plan de Acción PDF. Requiere seguimiento operativo y verificadores actualizados.", "status": "Programada"}];
+    const money = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 });
+    const byId = id => document.getElementById(id);
+    function unique(values) { return [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b, 'es')); }
+    function addOptions(id, values) {
+      const select = byId(id);
+      unique(values).forEach(value => { const option = document.createElement('option'); option.value = value; option.textContent = value; select.appendChild(option); });
+    }
+    function filtered() {
+      const q = byId('search').value.trim().toLowerCase();
+      const line = byId('lineFilter').value;
+      const status = byId('statusFilter').value;
+      const year = byId('yearFilter').value;
+      const executor = byId('executorFilter').value;
+      return DATA.filter(item => {
+        const haystack = [item.action, item.line, item.indicator, item.goal, item.verifier, item.observation, item.allExecutors, item.executors.join(' ')].join(' ').toLowerCase();
+        return (!q || haystack.includes(q)) && (!line || item.line === line) && (!status || item.status === status) && (!year || item.years.includes(year)) && (!executor || item.executors.includes(executor) || item.allExecutors.includes(executor));
+      });
+    }
+    function countBy(items, getter) {
+      const counts = {};
+      items.forEach(item => { [].concat(getter(item)).filter(Boolean).forEach(value => counts[value] = (counts[value] || 0) + 1); });
+      return counts;
+    }
+    function budgetBy(items, getter) {
+      const counts = {};
+      items.forEach(item => { const key = getter(item) || 'Sin clasificar'; counts[key] = (counts[key] || 0) + item.budget; });
+      return counts;
+    }
+    function renderBars(id, counts, formatter = value => value) {
+      const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+      const max = Math.max(1, ...entries.map(entry => entry[1]));
+      byId(id).innerHTML = entries.map(([label, value]) => `<div class="bar-row" title="${label}"><div class="bar-label">${label}</div><div class="bar-track"><div class="bar-fill" style="width:${Math.max(3, value / max * 100)}%"></div></div><div>${formatter(value)}</div></div>`).join('') || '<p class="note">Sin datos para los filtros seleccionados.</p>';
+    }
+    function renderKpis(items) {
+      const totalBudget = items.reduce((sum, item) => sum + item.budget, 0);
+      const withBudget = items.filter(item => item.budget > 0).length;
+      const activeExecutors = unique(items.flatMap(item => item.executors)).length;
+      byId('kpis').innerHTML = [
+        ['Acciones', items.length],
+        ['Presupuesto identificado', money.format(totalBudget)],
+        ['Con presupuesto', withBudget],
+        ['Líneas de acción', unique(items.map(item => item.line)).length],
+        ['Ejecutores activos', activeExecutors],
+      ].map(([label, value]) => `<div class="kpi"><div class="label">${label}</div><div class="value">${value}</div></div>`).join('');
+    }
+    function renderTable(items) {
+      byId('table').innerHTML = `<table><thead><tr><th>N°</th><th>Acción</th><th>Línea</th><th>Estado lectura</th><th>Años</th><th>Ejecutores</th><th>Presupuesto</th><th>Meta</th><th>Verificador</th></tr></thead><tbody>${items.map(item => `<tr><td>${item.id}</td><td><strong>${item.action}</strong><br><span class="note">${item.indicator}</span></td><td>${item.line}</td><td><span class="status-pill">${item.status}</span></td><td>${item.years.join(', ')}</td><td>${item.allExecutors || item.executors.join(', ')}</td><td>${item.budget ? money.format(item.budget) : item.budgetLabel}</td><td>${item.goal}</td><td>${item.verifier}</td></tr>`).join('')}</tbody></table>`;
+    }
+    function update() {
+      const items = filtered();
+      renderKpis(items);
+      renderBars('statusChart', countBy(items, item => item.status));
+      renderBars('lineChart', countBy(items, item => item.line));
+      renderBars('yearChart', countBy(items, item => item.years));
+      renderBars('budgetChart', budgetBy(items, item => item.line), value => money.format(value));
+      renderTable(items);
+    }
+    addOptions('lineFilter', DATA.map(item => item.line));
+    addOptions('statusFilter', DATA.map(item => item.status));
+    addOptions('yearFilter', DATA.flatMap(item => item.years));
+    addOptions('executorFilter', DATA.flatMap(item => item.executors));
+    ['search', 'lineFilter', 'statusFilter', 'yearFilter', 'executorFilter'].forEach(id => byId(id).addEventListener('input', update));
+    update();
+  </script>
 </body>
 </html>
