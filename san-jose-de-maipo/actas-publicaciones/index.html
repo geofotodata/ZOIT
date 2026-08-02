@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Actas y publicaciones - San Jose de Maipo</title>
+  <style>
+    :root {
+      --bg: #f4f6f1;
+      --ink: #17211b;
+      --muted: #63736a;
+      --panel: #ffffff;
+      --line: #dce3da;
+      --green: #1f6f55;
+      --green-dark: #163b31;
+      --gold: #d6a64b;
+      --blue: #315f89;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+    header {
+      background: var(--green-dark);
+      color: #fff;
+      padding: 28px;
+      border-bottom: 5px solid var(--gold);
+    }
+    header a { color: #f7e1aa; text-decoration: none; }
+    .eyebrow {
+      margin: 0 0 8px;
+      color: #c8ddd3;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+    header p {
+      margin: 12px 0 0;
+      max-width: 900px;
+      color: #e4eee8;
+      line-height: 1.5;
+      font-size: 16px;
+    }
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 9px 13px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      color: var(--ink);
+      background: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .button.primary {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+      align-items: start;
+    }
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .card {
+      display: block;
+      min-height: 190px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      text-decoration: none;
+      color: var(--ink);
+    }
+    .card:hover {
+      border-color: #91aa9d;
+      box-shadow: 0 8px 24px rgba(22, 59, 49, .08);
+    }
+    .card h2, .card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .pill {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: #e8f1ec;
+      color: #1c6047;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .panel h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+    .panel h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+    .panel p, li {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .list {
+      margin: 8px 0 0;
+      padding-left: 18px;
+    }
+    .empty {
+      border-left: 4px solid var(--gold);
+    }
+    footer {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px 32px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    @media (max-width: 900px) {
+      .grid, .section-grid, .info-grid, .detail-grid { grid-template-columns: 1fr; }
+      header, main, footer { padding-left: 16px; padding-right: 16px; }
+      .card { min-height: auto; }
+    }
+</style>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">ZOIT San Jose de Maipo</p>
+    <h1>Actas y publicaciones - San Jose de Maipo</h1>
+    <p>Actas, reportes, documentos y publicaciones relevantes del proceso.</p>
+  </header>
+  <main>
+    <nav class="toolbar">
+      <a class="button" href="../../index.html">Inicio</a>
+      <a class="button" href="../../san-jose-de-maipo/index.html">San Jose de Maipo</a>
+      <a class="button" href="../../pirque/index.html">Pirque</a>
+      <a class="button" href="../../isla-de-maipo/index.html">Isla de Maipo</a>
+    </nav>
+    
+    <section class="panel empty">
+      <h2>Actas y publicaciones</h2>
+      <p>Actas, reportes, documentos y publicaciones relevantes del proceso.</p>
+      <p>Esta seccion esta preparada para incorporar informacion oficial, listados, documentos, formularios o tableros especificos del destino.</p>
+    </section>
+    <section class="panel">
+      <h2>Contenido sugerido</h2>
+      <ul>
+        <li>Responsables y fecha de ultima actualizacion.</li>
+        <li>Documentos o enlaces oficiales asociados.</li>
+        <li>Estado actual y proximos pasos.</li>
+      </ul>
+    </section>
+
+  </main>
+  <footer>Portal de seguimiento ZOIT. Version inicial para publicacion web.</footer>
+</body>
+</html>
